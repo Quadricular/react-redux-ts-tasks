@@ -1,0 +1,5 @@
+export enum taskTypes {
+  LOAD_TASKS = 'LOAD_TASKS',
+  LOAD_TASKS_FAILURE = 'LOAD_TASKS_FAILURE',
+  TASKS_LOADED = 'TASKS_LOADED',
+}

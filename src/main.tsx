@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Router from './router';
+import { Provider } from 'react-redux';
 import { makeServer } from './services/mirage';
+import './index.css';
+
+import store from './store';
 
 if (import.meta.env.DEV === true) {
   makeServer();
@@ -10,7 +13,11 @@ if (import.meta.env.DEV === true) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <Provider store={store}>
+      <Router />
+    </Provider>
+    ,
   </React.StrictMode>,
+
   document.getElementById('root'),
 );
