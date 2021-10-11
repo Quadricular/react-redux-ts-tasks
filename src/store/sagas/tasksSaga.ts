@@ -4,7 +4,7 @@ import { Task } from '../../models/task';
 import TasksService from '../../services/TasksService';
 import * as actions from '../actions/tasksActions';
 import { taskTypes } from '../constants';
-import { ToggleTasksRequestPayload } from '../types';
+
 //Worker Sagas
 function* loadTasks(): SagaIterator {
   try {
@@ -24,7 +24,7 @@ export function* toggleTask(action: any): SagaIterator {
       completed: completed,
     });
     console.log(task);
-    yield put(actions.toggledTaskAction(task));
+    yield put(actions.toggledTaskAction(action.payload));
   } catch (e) {
     console.log(e);
   }

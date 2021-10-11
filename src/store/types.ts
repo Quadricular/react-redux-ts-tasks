@@ -21,6 +21,7 @@ export interface ToggleTasksRequestPayload {
 }
 
 export interface ToggleTasksSuccessPayload {
+  id: string;
   task: Task;
 }
 
@@ -71,6 +72,7 @@ export interface AddTaskRequest {
 export type TasksActions =
   | FetchTasksRequest
   | FetchTasksSuccess
+  | ToggleTaskSuccess
   | FetchTasksFailure
   | tasksFilters
   | ToggleTaskRequest;

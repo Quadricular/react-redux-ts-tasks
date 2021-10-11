@@ -25,8 +25,13 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
     case taskTypes.TOGGLE_TASK:
       return {
         ...state,
-        tasks: state.tasks.map((todo) =>
-          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo,
+        pending: false,
+      };
+    case taskTypes.TASK_TOGGLED:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id ? { ...task, completed: !task.completed } : task,
         ),
         pending: false,
       };

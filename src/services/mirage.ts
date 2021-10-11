@@ -60,7 +60,6 @@ export function makeServer() {
 
       this.patch('/tasks/:id', (schema, request) => {
         const task: Task = JSON.parse(request.requestBody);
-        console.log(request);
         schema.db.tasks.update(task.id, task);
         return new Response(200, {}, task);
       });
