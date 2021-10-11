@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/reducers';
 import { VisibilityFilters } from '../store/constants';
 import TaskList from '../components/TaskList';
-import { toggleTask } from '../store/actions/tasksActions';
+import { toggleTaskAction } from '../store/actions/tasksActions';
 import { Task } from '../models/task';
 
 const getVisibleTasks = (tasks: { tasks: Task[] }, filter: VisibilityFilters) => {
@@ -12,7 +12,6 @@ const getVisibleTasks = (tasks: { tasks: Task[] }, filter: VisibilityFilters) =>
       return tasks.tasks;
     case VisibilityFilters.SHOW_COMPLETED: {
       const filtered = tasks.tasks.filter((t: Task) => t.completed);
-      console.log(filtered);
       return filtered;
     }
 
@@ -31,7 +30,12 @@ export default function Tasks(): JSX.Element {
 
   return (
     <>
-      <TaskList tasks={tasks} toggleTask={(id: string) => dispatch(toggleTask(id))} />
+      <TaskList
+        tasks={tasks}
+        toggleTask={(id: string, completed: boolean) =>
+          dispatch(toggleTaskAction({ id, completed }))
+        }
+      />
     </>
   );
 }

@@ -8,12 +8,16 @@ const TaskList = ({
   toggleTask,
 }: {
   tasks: ITask[];
-  toggleTask: (id: string) => ToggleTaskRequest;
+  toggleTask: (id: string, completed: boolean) => ToggleTaskRequest;
 }): JSX.Element => {
   return (
     <ul>
       {tasks.map((task: ITask) => (
-        <Task key={task.id} {...task} onClick={() => toggleTask(task.id)} />
+        <Task
+          key={task.id}
+          {...task}
+          onClick={() => toggleTask(task.id, !task.completed)}
+        />
       ))}
     </ul>
   );

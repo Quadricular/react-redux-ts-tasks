@@ -58,6 +58,13 @@ export function makeServer() {
 
       this.post('/tasks');
 
+      this.patch('/tasks/:id', (schema, request) => {
+        const task: Task = JSON.parse(request.requestBody);
+        console.log(request);
+        schema.db.tasks.update(task.id, task);
+        return new Response(200, {}, task);
+      });
+
       // reset the global namespace
       this.namespace = '';
       this.passthrough('http://localhost:5000/**');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadTasksAction } from '../store/actions/tasksActions';
+import { fetchTasksAction } from '../store/actions/tasksActions';
 import { RootState } from '../store/reducers';
 import Tabs from '../components/Tabs';
 import AddTask from '../containers/AddTask';
@@ -12,7 +12,7 @@ export default function Tasks(): JSX.Element {
   const { pending, error } = useSelector((state: RootState) => state.tasks);
 
   React.useEffect(() => {
-    dispatch(loadTasksAction());
+    dispatch(fetchTasksAction());
   }, []);
 
   return (
