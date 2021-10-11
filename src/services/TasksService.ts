@@ -33,13 +33,13 @@ class TasksService<T> {
     body: T,
     args: RequestInit = { headers, method: 'post', body: JSON.stringify(body) },
   ): Promise<ApiResponse<T>> {
-    return await http<T>(new Request(`${taskURL}/products/`, args));
+    return await http<T>(new Request(`${taskURL}`, args));
   }
   async delete(
     id: string,
     args: RequestInit = { headers, method: 'delete' },
   ): Promise<ApiResponse<T>> {
-    return await http<T>(new Request(`${taskURL}/products/:${id}`, args));
+    return await http<T>(new Request(`${taskURL}${id}`, args));
   }
 }
 

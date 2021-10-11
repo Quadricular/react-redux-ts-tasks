@@ -1,15 +1,26 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import {
   createServer,
   Factory,
   Model,
+  Registry,
   Response,
+  Server,
   //  ActiveModelSerializer
 } from 'miragejs';
 import faker from 'faker';
 import { Task } from '../models/task';
 import { v4 as uuidv4 } from 'uuid';
+import { Assign, ModelDefinition } from 'miragejs/-types';
 
-export function makeServer() {
+export function makeServer(): Server<
+  Registry<
+    {
+      task: ModelDefinition<Assign<{}, Partial<Task>>>;
+    },
+    {}
+  >
+> {
   const server = createServer({
     models: {
       task: Model.extend<Partial<Task>>({}),
@@ -39,7 +50,7 @@ export function makeServer() {
     },
 
     seeds(server) {
-      server.createList('task', 30);
+      server.createList('task', 15);
     },
 
     routes() {
@@ -56,7 +67,13 @@ export function makeServer() {
 
       this.get('/tasks/:id');
 
-      this.post('/tasks');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.post('/tasks', (schema: any, request) => {
+        const attrs = JSON.parse(request.requestBody);
+        console.log(attrs);
+        schema.tasks.create(attrs);
+        return new Response(200, {}, attrs);
+      });
 
       this.patch('/tasks/:id', (schema, request) => {
         const task: Task = JSON.parse(request.requestBody);

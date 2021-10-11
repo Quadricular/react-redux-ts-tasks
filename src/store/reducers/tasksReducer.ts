@@ -35,6 +35,12 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
         ),
         pending: false,
       };
+    case taskTypes.TASK_ADDED:
+      return {
+        ...state,
+        tasks: [...state.tasks, { ...action.payload.data }],
+        pending: false,
+      };
 
     default:
       return state;

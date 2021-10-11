@@ -6,14 +6,16 @@ import {
   FetchTasksSuccess,
   FetchTasksSuccessPayload,
   ToggleTaskRequest,
-  ToggleTaskSuccess,
   ToggleTasksRequestPayload,
+  ToggleTaskSuccess,
   ToggleTasksSuccessPayload,
   AddTaskRequest,
+  AddTaskRequestPayload,
+  AddTaskSuccess,
+  AddTaskSuccessPayload,
   SetFilter,
 } from '../types';
 import { VisibilityFilters } from '../../store/constants';
-import { Task } from '../../models/task';
 
 export const fetchTasksAction = (): FetchTasksRequest => {
   return {
@@ -46,9 +48,16 @@ export const toggledTaskAction = (
   };
 };
 
-export const addTaskAction = (payload: Task): AddTaskRequest => {
+export const addTaskAction = (payload: AddTaskRequestPayload): AddTaskRequest => {
   return {
     type: taskTypes.ADD_TASK,
+    payload,
+  };
+};
+
+export const addedTaskAction = (payload: AddTaskSuccessPayload): AddTaskSuccess => {
+  return {
+    type: taskTypes.TASK_ADDED,
     payload,
   };
 };

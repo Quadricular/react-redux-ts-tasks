@@ -22,7 +22,19 @@ export interface ToggleTasksRequestPayload {
 
 export interface ToggleTasksSuccessPayload {
   id: string;
-  task: Task;
+  completed: boolean;
+}
+
+export interface AddTaskRequestPayload {
+  data: Task;
+}
+
+export interface AddTaskSuccessPayload {
+  data: Task;
+}
+
+export interface FetchTasksSuccessPayload {
+  data: Task[];
 }
 
 export interface FetchTasksRequest {
@@ -37,6 +49,11 @@ export type FetchTasksSuccess = {
 export type ToggleTaskSuccess = {
   type: typeof taskTypes.TASK_TOGGLED;
   payload: ToggleTasksSuccessPayload;
+};
+
+export type AddTaskSuccess = {
+  type: typeof taskTypes.TASK_ADDED;
+  payload: AddTaskSuccessPayload;
 };
 
 export type tasksFilters = {
@@ -66,7 +83,7 @@ export interface ToggleTaskRequest {
 
 export interface AddTaskRequest {
   type: typeof taskTypes.ADD_TASK;
-  payload: Task;
+  payload: AddTaskRequestPayload;
 }
 
 export type TasksActions =
@@ -75,4 +92,6 @@ export type TasksActions =
   | ToggleTaskSuccess
   | FetchTasksFailure
   | tasksFilters
-  | ToggleTaskRequest;
+  | ToggleTaskRequest
+  | AddTaskRequest
+  | AddTaskSuccess;

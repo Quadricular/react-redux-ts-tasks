@@ -2,7 +2,7 @@ export interface Task {
   id: string;
   name: string;
   description: string;
-  created: Date;
+  created?: Date;
   deadline: Date;
   completed: boolean;
 }
