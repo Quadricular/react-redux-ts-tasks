@@ -42,6 +42,14 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
         pending: false,
       };
 
+    case taskTypes.TASK_DELETED:
+      const { id } = action.payload;
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== id),
+        pending: false,
+      };
+
     default:
       return state;
   }

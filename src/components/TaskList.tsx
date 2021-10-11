@@ -1,22 +1,26 @@
 import React from 'react';
 import Task from './Task';
 import { Task as ITask } from '../models/task';
-import { ToggleTaskRequest } from '../store/types';
+import { ToggleTaskRequest, DeleteTaskRequest } from '../store/types';
 
 const TaskList = ({
   tasks,
-  toggleTask,
+  toggle,
+  deleteT,
 }: {
   tasks: ITask[];
-  toggleTask: (id: string, completed: boolean) => ToggleTaskRequest;
+  toggle: (id: string, completed: boolean) => ToggleTaskRequest;
+  deleteT: (id: string) => DeleteTaskRequest;
 }): JSX.Element => {
+  console.log();
   return (
     <ul>
       {tasks.map((task: ITask) => (
         <Task
           key={task.id}
           {...task}
-          onClick={() => toggleTask(task.id, !task.completed)}
+          toggle={() => toggle(task.id, !task.completed)}
+          deleteT={() => deleteT(task.id)}
         />
       ))}
     </ul>

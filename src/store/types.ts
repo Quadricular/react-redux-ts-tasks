@@ -7,35 +7,7 @@ export interface TasksState {
   error: string | null;
 }
 
-export interface FetchTasksSuccessPayload {
-  data: Task[];
-}
-
-export interface FetchTasksFailurePayload {
-  error: string;
-}
-
-export interface ToggleTasksRequestPayload {
-  id: string;
-  completed: boolean;
-}
-
-export interface ToggleTasksSuccessPayload {
-  id: string;
-  completed: boolean;
-}
-
-export interface AddTaskRequestPayload {
-  data: Task;
-}
-
-export interface AddTaskSuccessPayload {
-  data: Task;
-}
-
-export interface FetchTasksSuccessPayload {
-  data: Task[];
-}
+/* FETCH */
 
 export interface FetchTasksRequest {
   type: typeof taskTypes.LOAD_TASKS;
@@ -46,17 +18,84 @@ export type FetchTasksSuccess = {
   payload: FetchTasksSuccessPayload;
 };
 
+export interface FetchTasksSuccessPayload {
+  data: Task[];
+}
+
+export type FetchTasksFailure = {
+  type: typeof taskTypes.LOAD_TASKS_FAILURE;
+  payload: FetchTasksFailurePayload;
+};
+
+export interface FetchTasksFailurePayload {
+  error: string;
+}
+
+/* TOGGLE (PUT) */
+
+export interface ToggleTaskRequest {
+  type: typeof taskTypes.TOGGLE_TASK;
+  payload: ToggleTasksRequestPayload;
+}
+
+export interface ToggleTasksRequestPayload {
+  id: string;
+  completed: boolean;
+}
+
 export type ToggleTaskSuccess = {
   type: typeof taskTypes.TASK_TOGGLED;
   payload: ToggleTasksSuccessPayload;
 };
+
+export interface ToggleTasksSuccessPayload {
+  id: string;
+  completed: boolean;
+}
+
+/* ADD */
+
+export interface AddTaskRequest {
+  type: typeof taskTypes.ADD_TASK;
+  payload: AddTaskRequestPayload;
+}
+
+export interface AddTaskRequestPayload {
+  data: Task;
+}
 
 export type AddTaskSuccess = {
   type: typeof taskTypes.TASK_ADDED;
   payload: AddTaskSuccessPayload;
 };
 
-export type tasksFilters = {
+export interface AddTaskSuccessPayload {
+  data: Task;
+}
+
+/* DELETE */
+
+export interface DeleteTaskRequest {
+  type: typeof taskTypes.DELETE_TASK;
+  payload: DeleteTaskRequestPayload;
+}
+
+export interface DeleteTaskRequestPayload {
+  id: string;
+}
+
+export type DeleteTaskSuccess = {
+  type: typeof taskTypes.TASK_DELETED;
+  payload: DeleteTaskSuccessPayload;
+};
+
+export interface DeleteTaskSuccessPayload {
+  id: string;
+}
+
+/* FILTERS */
+
+export type TasksFilters = {
   type:
     | VisibilityFilters.SHOW_ALL
     | VisibilityFilters.SHOW_COMPLETED
@@ -71,27 +110,14 @@ export type SetFilter = {
   filter: VisibilityFilters;
 };
 
-export type FetchTasksFailure = {
-  type: typeof taskTypes.LOAD_TASKS_FAILURE;
-  payload: FetchTasksFailurePayload;
-};
-
-export interface ToggleTaskRequest {
-  type: typeof taskTypes.TOGGLE_TASK;
-  payload: ToggleTasksRequestPayload;
-}
-
-export interface AddTaskRequest {
-  type: typeof taskTypes.ADD_TASK;
-  payload: AddTaskRequestPayload;
-}
-
 export type TasksActions =
   | FetchTasksRequest
   | FetchTasksSuccess
-  | ToggleTaskSuccess
   | FetchTasksFailure
-  | tasksFilters
   | ToggleTaskRequest
+  | ToggleTaskSuccess
   | AddTaskRequest
-  | AddTaskSuccess;
+  | AddTaskSuccess
+  | DeleteTaskRequest
+  | DeleteTaskSuccess
+  | TasksFilters;

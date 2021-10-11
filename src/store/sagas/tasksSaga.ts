@@ -5,7 +5,7 @@ import { Task } from '../../models/task';
 import TasksService from '../../services/TasksService';
 import * as actions from '../actions/tasksActions';
 import { taskTypes } from '../constants';
-import { ToggleTaskRequest, AddTaskRequest } from '../types';
+import { ToggleTaskRequest, AddTaskRequest, DeleteTaskRequest } from '../types';
 //Worker Sagas
 function* loadTasks(): SagaIterator {
   try {
@@ -49,6 +49,22 @@ function* addTask(action: AddTaskRequest): SagaIterator {
   }
 }
 
+function* deleteTask(action: DeleteTaskRequest): SagaIterator {
+  try {
+    yield call(TasksService.delete, action.payload.id);
+    yield put(actions.deletedTaskAction(action.payload));
+    // yield put(alert.setAlertAction({
+    //     text: 'Task Deleted!',
+    //     color: 'success'
+    // }))
+  } catch (e) {
+    // yield put(alert.setAlertAction({
+    //     text: 'Task Not Deleted.',
+    //     color: 'danger'
+    // }))
+  }
+}
+
 //Watcher Sagas
 function* watchLoadTasks() {
   yield takeEvery(taskTypes.LOAD_TASKS, loadTasks);
@@ -62,6 +78,10 @@ function* watchAddTask() {
   yield takeEvery(taskTypes.ADD_TASK, addTask);
 }
 
+function* watchDeleteTask() {
+  yield takeEvery(taskTypes.DELETE_TASK, deleteTask);
+}
+
 export function* tasksSaga(): Generator<CombinatorEffect<string, unknown>> {
-  yield all([watchLoadTasks(), watchToggleTask(), watchAddTask()]);
+  yield all([watchLoadTasks(), watchToggleTask(), watchAddTask(), watchDeleteTask()]);
 }

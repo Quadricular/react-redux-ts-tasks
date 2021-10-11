@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/reducers';
 import { VisibilityFilters } from '../store/constants';
 import TaskList from '../components/TaskList';
-import { toggleTaskAction } from '../store/actions/tasksActions';
+import { toggleTaskAction, deleteTaskAction } from '../store/actions/tasksActions';
 import { Task } from '../models/task';
 
 const getVisibleTasks = (tasks: { tasks: Task[] }, filter: VisibilityFilters) => {
@@ -32,9 +32,10 @@ export default function Tasks(): JSX.Element {
     <>
       <TaskList
         tasks={tasks}
-        toggleTask={(id: string, completed: boolean) =>
+        toggle={(id: string, completed: boolean) =>
           dispatch(toggleTaskAction({ id, completed }))
         }
+        deleteT={(id: string) => dispatch(deleteTaskAction({ id }))}
       />
     </>
   );

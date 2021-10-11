@@ -1,68 +1,85 @@
 import { taskTypes } from '../constants';
-import {
-  // FetchTasksFailure,
-  // FetchTasksFailurePayload,
-  FetchTasksRequest,
-  FetchTasksSuccess,
-  FetchTasksSuccessPayload,
-  ToggleTaskRequest,
-  ToggleTasksRequestPayload,
-  ToggleTaskSuccess,
-  ToggleTasksSuccessPayload,
-  AddTaskRequest,
-  AddTaskRequestPayload,
-  AddTaskSuccess,
-  AddTaskSuccessPayload,
-  SetFilter,
-} from '../types';
+import * as types from '../types';
 import { VisibilityFilters } from '../../store/constants';
 
-export const fetchTasksAction = (): FetchTasksRequest => {
+/* FETCH */
+
+export const fetchTasksAction = (): types.FetchTasksRequest => {
   return {
     type: taskTypes.LOAD_TASKS,
   };
 };
 
 export const fetchedTasksAction = (
-  payload: FetchTasksSuccessPayload,
-): FetchTasksSuccess => {
+  payload: types.FetchTasksSuccessPayload,
+): types.FetchTasksSuccess => {
   return {
     type: taskTypes.TASKS_LOADED,
     payload,
   };
 };
 
+/* TOGGLE */
+
 export const toggleTaskAction = (
-  payload: ToggleTasksRequestPayload,
-): ToggleTaskRequest => ({
+  payload: types.ToggleTasksRequestPayload,
+): types.ToggleTaskRequest => ({
   type: taskTypes.TOGGLE_TASK,
   payload,
 });
 
 export const toggledTaskAction = (
-  payload: ToggleTasksSuccessPayload,
-): ToggleTaskSuccess => {
+  payload: types.ToggleTasksSuccessPayload,
+): types.ToggleTaskSuccess => {
   return {
     type: taskTypes.TASK_TOGGLED,
     payload,
   };
 };
 
-export const addTaskAction = (payload: AddTaskRequestPayload): AddTaskRequest => {
+/* ADD */
+
+export const addTaskAction = (
+  payload: types.AddTaskRequestPayload,
+): types.AddTaskRequest => {
   return {
     type: taskTypes.ADD_TASK,
     payload,
   };
 };
 
-export const addedTaskAction = (payload: AddTaskSuccessPayload): AddTaskSuccess => {
+export const addedTaskAction = (
+  payload: types.AddTaskSuccessPayload,
+): types.AddTaskSuccess => {
   return {
     type: taskTypes.TASK_ADDED,
     payload,
   };
 };
 
-export const setVisibilityFilter = (filter: VisibilityFilters): SetFilter => ({
+/* DELETE */
+
+export const deleteTaskAction = (
+  payload: types.DeleteTaskRequestPayload,
+): types.DeleteTaskRequest => {
+  return {
+    type: taskTypes.DELETE_TASK,
+    payload,
+  };
+};
+
+export const deletedTaskAction = (
+  payload: types.DeleteTaskSuccessPayload,
+): types.DeleteTaskSuccess => {
+  return {
+    type: taskTypes.TASK_DELETED,
+    payload,
+  };
+};
+
+/* FILTERS */
+
+export const setVisibilityFilter = (filter: VisibilityFilters): types.SetFilter => ({
   type: taskTypes.SET_VISIBILITY_FILTER,
   filter,
 });

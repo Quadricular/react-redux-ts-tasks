@@ -81,6 +81,13 @@ export function makeServer(): Server<
         return new Response(200, {}, task);
       });
 
+      this.delete('/tasks/:id', (schema, request) => {
+        const { id } = request.params;
+        console.log(id);
+        // schema.db.tasks.remove(task.id);
+        return new Response(200, {}, { id: id });
+      });
+
       // reset the global namespace
       this.namespace = '';
       this.passthrough('http://localhost:5000/**');

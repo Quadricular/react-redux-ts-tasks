@@ -39,7 +39,7 @@ class TasksService<T> {
     id: string,
     args: RequestInit = { headers, method: 'delete' },
   ): Promise<ApiResponse<T>> {
-    return await http<T>(new Request(`${taskURL}${id}`, args));
+    return await http<T>(new Request(`${taskURL}/${id}`, args));
   }
 }
 
