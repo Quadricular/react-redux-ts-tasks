@@ -2,28 +2,35 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadTasksAction } from '../store/actions/tasksActions';
 import { RootState } from '../store/reducers';
+import Tabs from '../components/Tabs';
+import AddTask from '../containers/AddTask';
+import TaskList from '../containers/VisibleTaskList';
+import Fallback from '../components/common/Fallback';
 
-export default function Tasks() {
+export default function Tasks(): JSX.Element {
   const dispatch = useDispatch();
-  const { pending, tasks, error } = useSelector((state: RootState) => state.tasks);
+  const { pending, error } = useSelector((state: RootState) => state.tasks);
 
   React.useEffect(() => {
     dispatch(loadTasksAction());
   }, []);
 
   return (
-    <div>
-      {pending ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Error</div>
-      ) : (
-        tasks?.map((task: any, index: any) => (
-          <div key={task.id}>
-            {++index}. {task.name}
-          </div>
-        ))
-      )}
-    </div>
+    <>
+      <AddTask />
+      <Tabs />
+      <div>
+        {pending ? (
+          <Fallback />
+        ) : error ? (
+          <div>Error</div>
+        ) : (
+          <>
+            {/* <VisibleTaskList /> */}
+            <TaskList />
+          </>
+        )}
+      </div>
+    </>
   );
 }

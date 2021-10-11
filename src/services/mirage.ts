@@ -49,7 +49,7 @@ export function makeServer() {
 
       this.get('/tasks', function (schema) {
         const total = schema.all('task').length;
-        const tasks: any = schema.all('task').models;
+        const tasks: Task[] = schema.all('task').models;
 
         return new Response(200, { 'x-total-count': String(total) }, tasks);
       });

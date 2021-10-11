@@ -1,4 +1,6 @@
-const Fallback = () => {
+import React from 'react';
+
+const Fallback = (): JSX.Element => {
   return <div>Loading...</div>;
 };
 

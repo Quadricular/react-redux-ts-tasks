@@ -1,5 +1,6 @@
-import { taskTypes } from '../actionTypes';
+import { taskTypes } from '../constants';
 import { TasksActions, TasksState } from '../types';
+import { Task } from '../../models/task';
 
 const initialState: TasksState = {
   pending: false,
@@ -7,7 +8,7 @@ const initialState: TasksState = {
   error: null,
 };
 
-export const tasksReducer = (state = initialState, action: TasksActions) => {
+export const tasksReducer = (state = initialState, action: TasksActions): TasksState => {
   switch (action.type) {
     case taskTypes.LOAD_TASKS:
       return {
@@ -18,8 +19,16 @@ export const tasksReducer = (state = initialState, action: TasksActions) => {
       return {
         ...state,
         pending: false,
-        tasks: action.payload.data,
+        tasks: action.payload.data as Task[],
         error: null,
+      };
+    case taskTypes.TOGGLE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((todo) =>
+          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo,
+        ),
+        pending: false,
       };
 
     default:
