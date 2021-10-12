@@ -1,10 +1,14 @@
 import { Task } from '../models/task';
-import { taskTypes, VisibilityFilters } from './constants';
+import { taskTypes, VisibilityFilters, ModalActionTypes } from './constants';
 
 export interface TasksState {
   pending: boolean;
   tasks: Task[];
   error: string | null;
+}
+
+export interface ModalState {
+  modal: boolean;
 }
 
 /* FETCH */
@@ -109,6 +113,11 @@ export type SetFilter = {
   type: taskTypes.SET_VISIBILITY_FILTER;
   filter: VisibilityFilters;
 };
+
+export interface ModalAction {
+  type: ModalActionTypes;
+  payload?: any;
+}
 
 export type TasksActions =
   | FetchTasksRequest

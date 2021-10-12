@@ -3,7 +3,7 @@ import type { CombinatorEffect } from '@redux-saga/types';
 import { takeEvery, call, put, all } from 'redux-saga/effects';
 import { Task } from '../../models/task';
 import TasksService from '../../services/TasksService';
-import * as actions from '../actions/tasksActions';
+import * as actions from '../actions';
 import { taskTypes } from '../constants';
 import { ToggleTaskRequest, AddTaskRequest, DeleteTaskRequest } from '../types';
 //Worker Sagas
@@ -36,6 +36,7 @@ function* addTask(action: AddTaskRequest): SagaIterator {
   try {
     const task = yield call(TasksService.create, action.payload.data);
     yield put(actions.addedTaskAction(task));
+    yield put(actions.hideModal());
     // yield put(alert.setAlertAction({
     //     text: 'Task Added!',
     //     color: 'success'

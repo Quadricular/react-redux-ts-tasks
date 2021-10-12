@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasksAction } from '../store/actions/tasksActions';
+
+import { showModal, fetchTasksAction } from '../store/actions';
 import { RootState } from '../store/reducers';
 import Tabs from '../components/Tabs';
 import AddTask from '../containers/AddTask';
 import TaskList from '../containers/VisibleTaskList';
 import Fallback from '../components/common/Fallback';
+import Modal from '../components/common/Modal';
 
 export default function Tasks(): JSX.Element {
   const dispatch = useDispatch();
@@ -15,9 +17,12 @@ export default function Tasks(): JSX.Element {
     dispatch(fetchTasksAction());
   }, []);
 
+  const openModal = () => {
+    dispatch(showModal());
+  };
+
   return (
     <>
-      <AddTask />
       <Tabs />
       <div>
         {pending ? (
@@ -27,6 +32,14 @@ export default function Tasks(): JSX.Element {
         ) : (
           <>
             {/* <VisibleTaskList /> */}
+
+            <Modal>
+              <AddTask />
+            </Modal>
+            <button type="button" onClick={openModal}>
+              Add Task
+            </button>
+
             <TaskList />
           </>
         )}

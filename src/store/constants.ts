@@ -24,3 +24,8 @@ export enum VisibilityFilters {
   SHOW_ACTIVE = 'SHOW_ACTIVE',
   SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER',
 }
+
+export enum ModalActionTypes {
+  SHOW_MODAL = 'SHOW_MODAL',
+  HIDE_MODAL = 'HIDE_MODAL',
+}

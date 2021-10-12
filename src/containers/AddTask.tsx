@@ -7,6 +7,8 @@ export default function AddTask(): JSX.Element {
   const dispatch = useDispatch();
   let input: HTMLInputElement | null;
 
+  const [submit, setSubmit] = React.useState(false);
+
   return (
     <div>
       <form
@@ -27,10 +29,18 @@ export default function AddTask(): JSX.Element {
             }),
           );
           input.value = '';
+          setSubmit(true);
         }}
       >
-        <input ref={(node) => (input = node)} />
-        <button type="submit">Add Todo</button>
+        {!submit ? (
+          <>
+            {' '}
+            <input ref={(node) => (input = node)} />
+            <button type="submit">Add Todo</button>
+          </>
+        ) : (
+          <>Submitting....</>
+        )}
       </form>
     </div>
   );
