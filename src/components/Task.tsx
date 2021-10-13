@@ -2,27 +2,30 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { showModal } from '../store/actions';
+import { useDispatch } from 'react-redux';
+import { Task as ITask } from '../models/task';
 
 const Task = ({
-  name,
-  completed,
-  toggle,
-  deleteT,
+  data,
+  toggleTask,
+  deleteTask,
 }: {
-  name: string;
-  completed: boolean;
-  toggle: React.MouseEventHandler<HTMLLIElement>;
-  deleteT: React.MouseEventHandler<HTMLElement>;
+  data: ITask;
+  toggleTask: React.MouseEventHandler<HTMLSpanElement>;
+  deleteTask: React.MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element => {
+  const dispatch = useDispatch();
   return (
     <>
       <li
         style={{
-          textDecoration: completed ? 'line-through' : 'none',
+          textDecoration: data.completed ? 'line-through' : 'none',
         }}
       >
-        <span onClick={toggle}>{name}</span>
+        <span onClick={toggleTask}>{data.name}</span>
         <button
+          onClick={() => dispatch(showModal({ add: false, currentTask: data }))}
           style={{
             marginLeft: 10,
           }}
@@ -30,7 +33,7 @@ const Task = ({
           edit
         </button>
         <button
-          onClick={deleteT}
+          onClick={deleteTask}
           style={{
             marginLeft: 10,
           }}

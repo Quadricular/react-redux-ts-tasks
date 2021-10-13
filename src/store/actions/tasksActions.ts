@@ -57,6 +57,26 @@ export const addedTaskAction = (
   };
 };
 
+/* EDIT */
+
+export const editTaskAction = (
+  payload: types.EditTaskRequestPayload,
+): types.EditTaskRequest => {
+  return {
+    type: taskTypes.EDIT_TASK,
+    payload,
+  };
+};
+
+export const editedTaskAction = (
+  payload: types.EditTaskSuccessPayload,
+): types.EditTaskSuccess => {
+  return {
+    type: taskTypes.TASK_EDITED,
+    payload,
+  };
+};
+
 /* DELETE */
 
 export const deleteTaskAction = (

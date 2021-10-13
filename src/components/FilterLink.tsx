@@ -1,9 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setVisibilityFilter } from '../store/actions/tasksActions';
 import { VisibilityFilters } from '../store/constants';
 import Link from '../components/common/Link';
-import { RootState } from '../store/reducers';
+import { useVisibilityFilter } from '../hooks/filterHooks';
 
 export default function FilterLink({
   filter,
@@ -13,7 +13,7 @@ export default function FilterLink({
   children: React.ReactNode;
 }): JSX.Element {
   const dispatch = useDispatch();
-  const visibilityFilter = useSelector((state: RootState) => state.visibilityFilter);
+  const visibilityFilter = useVisibilityFilter();
 
   return (
     <Link

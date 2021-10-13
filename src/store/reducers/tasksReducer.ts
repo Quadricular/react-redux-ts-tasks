@@ -41,7 +41,14 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
         tasks: [...state.tasks, { ...action.payload.data }],
         pending: false,
       };
-
+    case taskTypes.TASK_EDITED:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.data.id ? { ...task, ...action.payload.data } : task,
+        ),
+        pending: false,
+      };
     case taskTypes.TASK_DELETED:
       const { id } = action.payload;
       return {

@@ -81,6 +81,12 @@ export function makeServer(): Server<
         return new Response(200, {}, task);
       });
 
+      this.put('/tasks/:id', (schema, request) => {
+        const task: Task = JSON.parse(request.requestBody);
+        schema.db.tasks.update(task.id, task);
+        return new Response(200, {}, task);
+      });
+
       this.delete('/tasks/:id', (schema, request) => {
         const { id } = request.params;
         console.log(id);

@@ -1,26 +1,25 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Task from './Task';
 import { Task as ITask } from '../models/task';
-import { ToggleTaskRequest, DeleteTaskRequest } from '../store/types';
+import { toggleTaskAction, deleteTaskAction } from '../store/actions/tasksActions';
+import { useGetVisibleTasks } from '../hooks/taskHooks';
 
-const TaskList = ({
-  tasks,
-  toggle,
-  deleteT,
-}: {
-  tasks: ITask[];
-  toggle: (id: string, completed: boolean) => ToggleTaskRequest;
-  deleteT: (id: string) => DeleteTaskRequest;
-}): JSX.Element => {
-  console.log();
+const TaskList = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const tasks = useGetVisibleTasks();
+
   return (
     <ul>
       {tasks.map((task: ITask) => (
         <Task
           key={task.id}
-          {...task}
-          toggle={() => toggle(task.id, !task.completed)}
-          deleteT={() => deleteT(task.id)}
+          data={{ ...task }}
+          toggleTask={() =>
+            dispatch(toggleTaskAction({ id: task.id, completed: task.completed }))
+          }
+          deleteTask={() => dispatch(deleteTaskAction({ id: task.id }))}
+          // editTask={() => dispatch(editTaskAction({ id: task.id, data: { ...task } }))}
         />
       ))}
     </ul>

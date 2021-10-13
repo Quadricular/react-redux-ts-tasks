@@ -6,6 +6,8 @@ export {
   toggledTaskAction,
   addTaskAction,
   addedTaskAction,
+  editTaskAction,
+  editedTaskAction,
   deleteTaskAction,
   deletedTaskAction,
   setVisibilityFilter,

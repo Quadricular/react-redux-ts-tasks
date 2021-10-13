@@ -4,6 +4,7 @@ import { ModalState } from '../types';
 
 const initialState: ModalState = {
   modal: false,
+  add: false,
 };
 
 export const modalReducer = (state = initialState, action: ModalAction): ModalState => {
@@ -12,11 +13,14 @@ export const modalReducer = (state = initialState, action: ModalAction): ModalSt
       return {
         ...state,
         modal: true,
+        add: action?.payload?.add,
+        currentTask: action.payload?.currentTask,
       };
     case ModalActionTypes.HIDE_MODAL:
       return {
         ...state,
         modal: false,
+        add: action?.payload?.add,
       };
     default:
       return state;

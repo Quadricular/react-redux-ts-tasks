@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { showModal, fetchTasksAction } from '../store/actions';
 import { RootState } from '../store/reducers';
 import Tabs from '../components/Tabs';
-import AddTask from '../containers/AddTask';
-import TaskList from '../containers/VisibleTaskList';
+import AddTask from '../components/AddTask';
+import EditTask from '../components/EditTask';
 import Fallback from '../components/common/Fallback';
 import Modal from '../components/common/Modal';
+import TaskList from '../components/TaskList';
 
 export default function Tasks(): JSX.Element {
   const dispatch = useDispatch();
   const { pending, error } = useSelector((state: RootState) => state.tasks);
 
+  const { add } = useSelector((state: RootState) => state.modal);
+
   React.useEffect(() => {
     dispatch(fetchTasksAction());
   }, []);
-
-  const openModal = () => {
-    dispatch(showModal());
-  };
 
   return (
     <>
@@ -31,12 +30,16 @@ export default function Tasks(): JSX.Element {
           <div>Error</div>
         ) : (
           <>
-            {/* <VisibleTaskList /> */}
-
-            <Modal>
-              <AddTask />
-            </Modal>
-            <button type="button" onClick={openModal}>
+            {add ? (
+              <Modal>
+                <AddTask />
+              </Modal>
+            ) : (
+              <Modal>
+                <EditTask />
+              </Modal>
+            )}
+            <button type="button" onClick={() => dispatch(showModal({ add: true }))}>
               Add Task
             </button>
 

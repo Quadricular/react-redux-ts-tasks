@@ -9,6 +9,8 @@ export interface TasksState {
 
 export interface ModalState {
   modal: boolean;
+  add: boolean | undefined;
+  currentTask?: Task;
 }
 
 /* FETCH */
@@ -55,6 +57,27 @@ export type ToggleTaskSuccess = {
 export interface ToggleTasksSuccessPayload {
   id: string;
   completed: boolean;
+}
+
+/* EDIT */
+
+export interface EditTaskRequest {
+  type: typeof taskTypes.EDIT_TASK;
+  payload: EditTaskRequestPayload;
+}
+
+export interface EditTaskRequestPayload {
+  id: string;
+  data: Task;
+}
+
+export type EditTaskSuccess = {
+  type: typeof taskTypes.TASK_EDITED;
+  payload: EditTaskSuccessPayload;
+};
+
+export interface EditTaskSuccessPayload {
+  data: Task;
 }
 
 /* ADD */
@@ -116,7 +139,12 @@ export type SetFilter = {
 
 export interface ModalAction {
   type: ModalActionTypes;
-  payload?: any;
+  payload?: ModalActionPayload;
+}
+
+export interface ModalActionPayload {
+  add: boolean;
+  currentTask?: Task;
 }
 
 export type TasksActions =
@@ -127,6 +155,8 @@ export type TasksActions =
   | ToggleTaskSuccess
   | AddTaskRequest
   | AddTaskSuccess
+  | EditTaskRequest
+  | EditTaskSuccess
   | DeleteTaskRequest
   | DeleteTaskSuccess
   | TasksFilters;

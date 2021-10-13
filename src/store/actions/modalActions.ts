@@ -1,9 +1,10 @@
 import { ModalActionTypes } from '../constants';
-import { ModalAction } from '../types';
+import { ModalAction, ModalActionPayload } from '../types';
 
-export function showModal(): ModalAction {
+export function showModal(payload: ModalActionPayload): ModalAction {
   return {
     type: ModalActionTypes.SHOW_MODAL,
+    payload,
   };
 }
 
