@@ -7,10 +7,5 @@ import { Task, TaskErrors } from '../models/task';
 export default function EditTask(): JSX.Element {
   const editTaskForm: FormTypes<Task, TaskErrors> = useEditTask();
 
-  return (
-    <>
-      <Form {...editTaskForm} add={false} />
-      {editTaskForm.submitting ? <>Updating....</> : <></>}
-    </>
-  );
+  return <Form {...editTaskForm} add={false} />;
 }

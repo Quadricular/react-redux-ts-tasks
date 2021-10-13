@@ -6,7 +6,7 @@ export interface Task {
   name: string;
   description: string;
   created?: Date;
-  deadline: Date;
+  deadline: Date | string;
   completed: boolean;
 }
 

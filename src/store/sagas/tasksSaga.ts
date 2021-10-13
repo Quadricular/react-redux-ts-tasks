@@ -36,8 +36,6 @@ export function* toggleTask(action: ToggleTaskRequest): SagaIterator {
 }
 
 function* addTask(action: AddTaskRequest): SagaIterator {
-  console.log(action.payload);
-
   try {
     const task = yield call(TasksService.create, action.payload.data);
     yield put(actions.addedTaskAction(task));
