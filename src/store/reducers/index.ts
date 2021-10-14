@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 import { tasksReducer } from './tasksReducer';
-import { visibilityFilterReducer } from './visibilityFilterReducer';
+import { filterReducer } from './filterReducer';
 import { modalReducer } from './modalReducer';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
-  visibilityFilter: visibilityFilterReducer,
+  filters: filterReducer,
   modal: modalReducer,
 });
 

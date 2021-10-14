@@ -9,6 +9,7 @@ import EditTask from '../components/EditTask';
 import Fallback from '../components/common/Fallback';
 import Modal from '../components/common/Modal';
 import TaskList from '../components/TaskList';
+import FilterDropdown from '../components/FilterDropdown';
 
 export default function Tasks(): JSX.Element {
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ export default function Tasks(): JSX.Element {
   }, []);
 
   return (
-    <>
-      <Tabs />
-      <div>
+    <div>
+      <div style={{ display: 'flex' }}>
+        <Tabs />
         {pending ? (
           <Fallback />
         ) : error ? (
@@ -39,14 +40,19 @@ export default function Tasks(): JSX.Element {
                 <EditTask />
               </Modal>
             )}
-            <button type="button" onClick={() => dispatch(showModal({ add: true }))}>
+
+            <button
+              style={{ marginLeft: 20 }}
+              type="button"
+              onClick={() => dispatch(showModal({ add: true }))}
+            >
               Add Task
             </button>
-
-            <TaskList />
+            <FilterDropdown />
           </>
         )}
       </div>
-    </>
+      <TaskList />
+    </div>
   );
 }

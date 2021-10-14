@@ -10,5 +10,6 @@ export {
   editedTaskAction,
   deleteTaskAction,
   deletedTaskAction,
-  setVisibilityFilter,
 } from './tasksActions';
+
+export { setVisibilityFilter, setSortingFilter } from './filterActions';

@@ -2,6 +2,7 @@ import React from 'react';
 import { Controller, Control } from 'react-hook-form';
 import Flatpickr from 'react-flatpickr';
 import { useCurrentTask } from '../../hooks/taskHooks';
+import './Datepicker.css';
 
 const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element => {
   const currentTask = useCurrentTask();

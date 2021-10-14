@@ -1,6 +1,5 @@
 import { taskTypes } from '../constants';
 import * as types from '../types';
-import { VisibilityFilters } from '../../store/constants';
 
 /* FETCH */
 
@@ -96,10 +95,3 @@ export const deletedTaskAction = (
     payload,
   };
 };
-
-/* FILTERS */
-
-export const setVisibilityFilter = (filter: VisibilityFilters): types.SetFilter => ({
-  type: taskTypes.SET_VISIBILITY_FILTER,
-  filter,
-});

@@ -1,28 +1,66 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/reducers';
-import { VisibilityFilters } from '../store/constants';
+import { SortingFilters, VisibilityFilters } from '../store/constants';
 import { Task } from '../models/task';
 
-export const getVisibleTasks = (
-  tasks: { tasks: Task[] },
-  filter: VisibilityFilters,
-): Task[] => {
-  switch (filter) {
+export const filterVisible = (tasks: Task[], visibility: VisibilityFilters): Task[] => {
+  switch (visibility) {
     case VisibilityFilters.SHOW_ALL:
-      return tasks.tasks;
+      return tasks;
     case VisibilityFilters.SHOW_COMPLETED: {
-      const filtered = tasks.tasks.filter((t: Task) => t.completed);
+      const filtered = tasks.filter((t: Task) => t.completed);
       return filtered;
     }
 
     case VisibilityFilters.SHOW_ACTIVE:
-      return tasks.tasks.filter((t: Task) => !t.completed);
+      return tasks.filter((t: Task) => !t.completed);
     default:
-      throw new Error('Unknown filter: ' + filter);
+      throw new Error('Unknown filter: ' + visibility);
   }
 };
 
+export const filterSorted = (tasks: Task[], sorting: SortingFilters): Task[] => {
+  switch (sorting) {
+    case SortingFilters.DEADLINE_ASCENDING:
+      return tasks.sort((x, y) => +new Date(y.deadline) - +new Date(x.deadline));
+    case SortingFilters.DEADLINE_DESCENDING: {
+      return tasks
+        .sort((x, y) => +new Date(x.deadline) - +new Date(y.deadline))
+        .map((task) => {
+          return task;
+        });
+    }
+    case SortingFilters.CREATED_ASCENDING:
+      return tasks
+        .sort((x, y) => +new Date(y.created) - +new Date(x.created))
+        .map((task) => {
+          return task;
+        });
+    case SortingFilters.CREATED_DESCENDING:
+      return tasks
+        .sort((x, y) => +new Date(x.created) - +new Date(y.created))
+        .map((task) => {
+          return task;
+        });
+    default:
+      throw new Error('Unknown filter: ' + sorting);
+  }
+};
+
+export const getVisibleTasks = (
+  tasks: { tasks: Task[] },
+  filters: {
+    visibility: VisibilityFilters;
+    sorting: SortingFilters;
+  },
+): Task[] => {
+  return filterSorted(filterVisible(tasks.tasks, filters.visibility), filters.sorting);
+};
+
 export const useVisibilityFilter = (): VisibilityFilters => {
-  const visibilityFilter = useSelector((state: RootState) => state.visibilityFilter);
-  return visibilityFilter;
+  return useSelector((state: RootState) => state.filters.visibility);
+};
+
+export const useSortingFilter = (): SortingFilters => {
+  return useSelector((state: RootState) => state.filters.sorting);
 };

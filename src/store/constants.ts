@@ -18,16 +18,44 @@ export enum taskTypes {
   DELETE_TASK = 'DELETE_TASK',
   TASK_DELETED = 'TASK_DELETED',
   DELETE_TASK_FAILURE = 'DELETE_TASK_FAILURE',
+}
 
+export enum Filters {
   SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER',
+  SET_SORTING_FILTER = 'SET_SORTING_FILTER',
 }
 
 export enum VisibilityFilters {
   SHOW_ALL = 'SHOW_ALL',
   SHOW_COMPLETED = 'SHOW_COMPLETED',
   SHOW_ACTIVE = 'SHOW_ACTIVE',
-  SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER',
 }
+
+export enum SortingFilters {
+  DEADLINE_ASCENDING = 'DEADLINE_ASCENDING',
+  DEADLINE_DESCENDING = 'DEADLINE_DESCENDING',
+  CREATED_ASCENDING = 'CREATED_ASCENDING',
+  CREATED_DESCENDING = 'CREATED_DESCENDING',
+}
+
+export const sortingFiltersList = [
+  {
+    label: 'Deadline (Ascending)',
+    type: SortingFilters.DEADLINE_ASCENDING,
+  },
+  {
+    label: 'Deadline (Descending)',
+    type: SortingFilters.DEADLINE_DESCENDING,
+  },
+  {
+    label: 'Created (Ascending)',
+    type: SortingFilters.CREATED_ASCENDING,
+  },
+  {
+    label: 'Created (Descending)',
+    type: SortingFilters.CREATED_DESCENDING,
+  },
+];
 
 export enum ModalActionTypes {
   SHOW_MODAL = 'SHOW_MODAL',

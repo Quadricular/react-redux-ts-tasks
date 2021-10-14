@@ -19,7 +19,6 @@ const TaskList = (): JSX.Element => {
             dispatch(toggleTaskAction({ id: task.id, completed: task.completed }))
           }
           deleteTask={() => dispatch(deleteTaskAction({ id: task.id }))}
-          // editTask={() => dispatch(editTaskAction({ id: task.id, data: { ...task } }))}
         />
       ))}
     </ul>

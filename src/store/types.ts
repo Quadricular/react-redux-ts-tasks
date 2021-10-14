@@ -1,5 +1,11 @@
 import { Task } from '../models/task';
-import { taskTypes, VisibilityFilters, ModalActionTypes } from './constants';
+import {
+  taskTypes,
+  VisibilityFilters,
+  ModalActionTypes,
+  Filters,
+  SortingFilters,
+} from './constants';
 
 export interface TasksState {
   pending: boolean;
@@ -11,6 +17,11 @@ export interface ModalState {
   modal: boolean;
   add: boolean | undefined;
   currentTask?: Task;
+}
+
+export interface FilterState {
+  visibility: VisibilityFilters;
+  sorting: SortingFilters;
 }
 
 /* FETCH */
@@ -120,33 +131,6 @@ export interface DeleteTaskSuccessPayload {
   id: string;
 }
 
-/* FILTERS */
-
-export type TasksFilters = {
-  type:
-    | VisibilityFilters.SHOW_ALL
-    | VisibilityFilters.SHOW_COMPLETED
-    | VisibilityFilters.SHOW_ACTIVE
-    | VisibilityFilters.SET_VISIBILITY_FILTER;
-  payload: FetchTasksSuccessPayload;
-  filter: VisibilityFilters;
-};
-
-export type SetFilter = {
-  type: taskTypes.SET_VISIBILITY_FILTER;
-  filter: VisibilityFilters;
-};
-
-export interface ModalAction {
-  type: ModalActionTypes;
-  payload?: ModalActionPayload;
-}
-
-export interface ModalActionPayload {
-  add: boolean;
-  currentTask?: Task;
-}
-
 export type TasksActions =
   | FetchTasksRequest
   | FetchTasksSuccess
@@ -158,5 +142,49 @@ export type TasksActions =
   | EditTaskRequest
   | EditTaskSuccess
   | DeleteTaskRequest
-  | DeleteTaskSuccess
-  | TasksFilters;
+  | DeleteTaskSuccess;
+
+/* MODAL */
+
+export interface ModalAction {
+  type: ModalActionTypes;
+  payload?: ModalActionPayload;
+}
+
+export interface ModalActionPayload {
+  add: boolean;
+  currentTask?: Task;
+}
+
+/* FILTERS */
+
+export type TasksVisibilityFilters = {
+  type: Filters.SET_VISIBILITY_FILTER;
+  payload: FetchTasksSuccessPayload;
+  filter: VisibilityFilters;
+};
+
+export type SetVisibilityFilter = {
+  type: Filters.SET_VISIBILITY_FILTER;
+  filter: VisibilityFilters;
+};
+
+export type TasksSortingFilters = {
+  type:
+    | VisibilityFilters.SHOW_ALL
+    | VisibilityFilters.SHOW_COMPLETED
+    | VisibilityFilters.SHOW_ACTIVE;
+  payload: FetchTasksSuccessPayload;
+  filter: VisibilityFilters;
+};
+
+export type SetSortingFilter = {
+  type: Filters.SET_SORTING_FILTER;
+  filter: SortingFilters;
+};
+
+export type FilterActions =
+  | TasksVisibilityFilters
+  | TasksSortingFilters
+  | SetVisibilityFilter
+  | SetSortingFilter;

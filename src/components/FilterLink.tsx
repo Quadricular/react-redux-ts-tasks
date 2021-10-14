@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setVisibilityFilter } from '../store/actions/tasksActions';
+import { setVisibilityFilter } from '../store/actions/filterActions';
 import { VisibilityFilters } from '../store/constants';
 import Link from '../components/common/Link';
 import { useVisibilityFilter } from '../hooks/filterHooks';

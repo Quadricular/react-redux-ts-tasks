@@ -5,6 +5,7 @@ import React from 'react';
 import { showModal } from '../store/actions';
 import { useDispatch } from 'react-redux';
 import { Task as ITask } from '../models/task';
+import format from 'date-fns/format';
 
 const Task = ({
   data,
@@ -24,6 +25,10 @@ const Task = ({
         }}
       >
         <span onClick={toggleTask}>{data.name}</span>
+        <span onClick={toggleTask}>
+          {' '}
+          {format(new Date(data.deadline), 'dd MMM yyyy')}
+        </span>
         <button
           onClick={() => dispatch(showModal({ add: false, currentTask: data }))}
           style={{

@@ -23,9 +23,7 @@ export interface FormTypes<T, E> {
 }
 
 export const useGetVisibleTasks = (): Task[] => {
-  return useSelector((state: RootState) =>
-    getVisibleTasks(state.tasks, state.visibilityFilter),
-  );
+  return useSelector((state: RootState) => getVisibleTasks(state.tasks, state.filters));
 };
 
 export const useAddTask = (): FormTypes<Task, TaskErrors> => {
