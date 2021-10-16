@@ -13,9 +13,7 @@ declare global {
 }
 
 const composeEnhancer =
-  (import.meta.env.ENV !== 'production' &&
-    window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']) ||
-  compose;
+  (!import.meta.env.ENV && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']) || compose;
 
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(saga, logger)));
 

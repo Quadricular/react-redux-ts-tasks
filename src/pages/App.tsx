@@ -4,7 +4,7 @@ import { makeServer } from '../services/mirage';
 import Router from '../router';
 import store from '../store';
 
-if (import.meta.env.DEV === true) {
+if (import.meta.env.DEV) {
   makeServer();
 }
 

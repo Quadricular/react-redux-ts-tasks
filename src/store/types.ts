@@ -80,7 +80,7 @@ export interface EditTaskRequest {
 
 export interface EditTaskRequestPayload {
   id: string;
-  data: Task;
+  data: Omit<Task, '_id' | 'deadline'> & { deadline: Date | string };
 }
 
 export type EditTaskSuccess = {
@@ -100,7 +100,7 @@ export interface AddTaskRequest {
 }
 
 export interface AddTaskRequestPayload {
-  data: Task;
+  data: Omit<Task, '_id' | 'deadline'> & { deadline: Date | string };
 }
 
 export type AddTaskSuccess = {

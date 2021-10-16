@@ -23,7 +23,7 @@ class TasksService<T> {
   }
 
   async create(
-    body: T,
+    body: Omit<Task, '_id' | 'deadline'> & { deadline: Date | string },
     args: RequestInit = { headers, method: 'post', body: JSON.stringify(body) },
   ): Promise<ApiResponse<T>> {
     return await http<T>(new Request(`${taskURL}`, args));

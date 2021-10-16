@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      target: builder
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
