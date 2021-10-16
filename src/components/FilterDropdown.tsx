@@ -3,11 +3,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { sortingFiltersList, SortingFilters } from '../store/constants';
 import { setSortingFilter } from '../store/actions/filterActions';
-import { useSortingFilter } from '../hooks/filterHooks';
 
 const FilterDropdown = (): JSX.Element => {
   const dispatch = useDispatch();
-  const sortingFilter = useSortingFilter();
+
   return (
     <div style={{ marginLeft: 20 }}>
       <span>sort by </span>
@@ -18,7 +17,7 @@ const FilterDropdown = (): JSX.Element => {
         className="browser-default custom-select"
       >
         {sortingFiltersList.map((sortBy, key) => (
-          <option key={key} value={sortBy.type} selected={sortingFilter === sortBy.type}>
+          <option key={key} value={sortBy.type} defaultValue={sortBy.type}>
             {sortBy.label}
           </option>
         ))}

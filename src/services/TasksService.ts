@@ -16,19 +16,12 @@ class TasksService<T> {
   }
   async update(
     id: string,
-    body: Task,
+    body: Task | { completed: boolean },
     args: RequestInit = { headers, method: 'put', body: JSON.stringify(body) },
   ): Promise<ApiResponse<T>> {
     return await http<T>(new Request(`${taskURL}/${id}`, args));
   }
 
-  async patch(
-    id: string,
-    body: Task | { completed: boolean },
-    args: RequestInit = { headers, method: 'patch', body: JSON.stringify(body) },
-  ): Promise<ApiResponse<T>> {
-    return await http<T>(new Request(`${taskURL}/${id}`, args));
-  }
   async create(
     body: T,
     args: RequestInit = { headers, method: 'post', body: JSON.stringify(body) },

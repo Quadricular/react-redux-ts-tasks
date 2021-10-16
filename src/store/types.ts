@@ -36,7 +36,9 @@ export type FetchTasksSuccess = {
 };
 
 export interface FetchTasksSuccessPayload {
-  data: Task[];
+  data: {
+    tasks: Task[];
+  };
 }
 
 export type FetchTasksFailure = {
@@ -62,12 +64,11 @@ export interface ToggleTasksRequestPayload {
 
 export type ToggleTaskSuccess = {
   type: typeof taskTypes.TASK_TOGGLED;
-  payload: ToggleTasksSuccessPayload;
+  payload: ToggleTaskSuccessPayload;
 };
 
-export interface ToggleTasksSuccessPayload {
-  id: string;
-  completed: boolean;
+export interface ToggleTaskSuccessPayload {
+  data: { task: { _id: string; completed: boolean } };
 }
 
 /* EDIT */
@@ -88,7 +89,7 @@ export type EditTaskSuccess = {
 };
 
 export interface EditTaskSuccessPayload {
-  data: Task;
+  data: { task: Task };
 }
 
 /* ADD */
@@ -108,7 +109,7 @@ export type AddTaskSuccess = {
 };
 
 export interface AddTaskSuccessPayload {
-  data: Task;
+  data: { task: Task };
 }
 
 /* DELETE */
@@ -128,7 +129,7 @@ export type DeleteTaskSuccess = {
 };
 
 export interface DeleteTaskSuccessPayload {
-  id: string;
+  data: { task: { _id: string } };
 }
 
 export type TasksActions =

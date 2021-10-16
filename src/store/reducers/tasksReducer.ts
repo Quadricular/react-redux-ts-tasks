@@ -19,7 +19,7 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
       return {
         ...state,
         pending: false,
-        tasks: action.payload.data as Task[],
+        tasks: action.payload.data.tasks as Task[],
         error: null,
       };
     case taskTypes.TOGGLE_TASK:
@@ -31,29 +31,35 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? { ...task, completed: !task.completed } : task,
+          task._id === action.payload.data.task._id
+            ? { ...task, ...action.payload.data.task }
+            : task,
         ),
         pending: false,
       };
     case taskTypes.TASK_ADDED:
       return {
         ...state,
-        tasks: [...state.tasks, { ...action.payload.data }],
+        tasks: [...state.tasks, { ...action.payload.data.task }],
         pending: false,
       };
     case taskTypes.TASK_EDITED:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.data.id ? { ...task, ...action.payload.data } : task,
+          task._id === action.payload.data.task._id
+            ? { ...task, ...action.payload.data.task }
+            : task,
         ),
         pending: false,
       };
     case taskTypes.TASK_DELETED:
-      const { id } = action.payload;
+      const { _id } = action.payload.data.task;
+
+      console.log(action.payload);
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== id),
+        tasks: state.tasks.filter((task) => task._id !== _id),
         pending: false,
       };
 

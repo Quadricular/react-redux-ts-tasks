@@ -2,10 +2,11 @@ import * as yup from 'yup';
 import { FieldError } from 'react-hook-form';
 
 export interface Task {
-  id: string;
+  _id: string;
   name: string;
   description: string;
-  created: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deadline: Date;
   completed: boolean;
 }

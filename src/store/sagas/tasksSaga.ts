@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import type { CombinatorEffect } from '@redux-saga/types';
 import { takeEvery, call, put, all } from 'redux-saga/effects';
-import { Task } from '../../models/task';
+
 import TasksService from '../../services/TasksService';
 import * as actions from '../actions';
 import { taskTypes } from '../constants';
@@ -10,26 +10,34 @@ import {
   AddTaskRequest,
   EditTaskRequest,
   DeleteTaskRequest,
+  FetchTasksSuccessPayload,
+  ToggleTaskSuccessPayload,
+  AddTaskSuccessPayload,
+  EditTaskSuccessPayload,
+  DeleteTaskSuccessPayload,
 } from '../types';
 //Worker Sagas
 function* loadTasks(): SagaIterator {
   try {
-    const tasks: { data: Task[] } = yield call(TasksService.getTasks);
-    yield put(actions.fetchedTasksAction(tasks));
+    const fetchResponse: FetchTasksSuccessPayload = yield call(TasksService.getTasks);
+    yield put(actions.fetchedTasksAction(fetchResponse));
   } catch (e) {
     console.log(e);
   }
 }
 
 export function* toggleTask(action: ToggleTaskRequest): SagaIterator {
-  const { id, completed } = action.payload;
-
   try {
-    yield call(TasksService.patch, id, {
-      id: id,
-      completed: completed,
-    });
-    yield put(actions.toggledTaskAction(action.payload));
+    const toggleResponse: ToggleTaskSuccessPayload = yield call(
+      TasksService.update,
+      action.payload.id,
+      {
+        completed: !action.payload.completed,
+      },
+    );
+    console.log(toggleResponse);
+    yield put(actions.toggledTaskAction(toggleResponse));
+    yield put(actions.hideModal());
   } catch (e) {
     console.log(e);
   }
@@ -37,8 +45,12 @@ export function* toggleTask(action: ToggleTaskRequest): SagaIterator {
 
 function* addTask(action: AddTaskRequest): SagaIterator {
   try {
-    const task = yield call(TasksService.create, action.payload.data);
-    yield put(actions.addedTaskAction(task));
+    const createResponse: AddTaskSuccessPayload = yield call(
+      TasksService.create,
+      action.payload.data,
+    );
+
+    yield put(actions.addedTaskAction(createResponse));
     yield put(actions.hideModal());
     // yield put(alert.setAlertAction({
     //     text: 'Task Added!',
@@ -55,10 +67,16 @@ function* addTask(action: AddTaskRequest): SagaIterator {
 
 export function* editTask(action: EditTaskRequest): SagaIterator {
   try {
-    yield call(TasksService.update, action.payload.id, {
-      ...action.payload.data,
-    });
-    yield put(actions.editedTaskAction(action.payload));
+    console.log(action.payload);
+    const editResponse: EditTaskSuccessPayload = yield call(
+      TasksService.update,
+      action.payload.id,
+      {
+        ...action.payload.data,
+      },
+    );
+
+    yield put(actions.editedTaskAction(editResponse));
     yield put(actions.hideModal());
   } catch (e) {
     console.log(e);
@@ -67,8 +85,12 @@ export function* editTask(action: EditTaskRequest): SagaIterator {
 
 function* deleteTask(action: DeleteTaskRequest): SagaIterator {
   try {
-    yield call(TasksService.delete, action.payload.id);
-    yield put(actions.deletedTaskAction(action.payload));
+    const deleteResponse: DeleteTaskSuccessPayload = yield call(
+      TasksService.delete,
+      action.payload.id,
+    );
+    console.log(deleteResponse);
+    yield put(actions.deletedTaskAction(deleteResponse));
     // yield put(alert.setAlertAction({
     //     text: 'Task Deleted!',
     //     color: 'success'

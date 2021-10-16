@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { useForm, UseFormRegister, Control, UseFormHandleSubmit } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Task, TaskErrors, taskSchema } from '../models/task';
@@ -57,10 +56,9 @@ export const useAddTask = (): FormTypes<Task, TaskErrors> => {
         dispatch(
           addTaskAction({
             data: {
-              id: uuidv4(),
               name: data.name,
               description: data.description,
-              deadline: data?.date && data?.date[0],
+              deadline: data?.date && (new Date(data?.date[0]) as Date),
               completed: false,
             },
           }),
@@ -108,17 +106,18 @@ export const useEditTask = (): FormTypes<Task, TaskErrors> => {
     register,
     submitting,
     onSubmit: (data: Task & { date: string }) => {
+      console.log(data?.date);
+      console.log(data);
       return (
         currentTask &&
         data &&
         dispatch(
           editTaskAction({
-            id: currentTask.id,
+            id: currentTask._id,
             data: {
-              id: currentTask.id,
               name: data.name,
               description: data.description,
-              deadline: new Date(data.date),
+              deadline: data?.date && new Date(data.date),
               completed: currentTask.completed,
             },
           }),

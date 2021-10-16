@@ -28,7 +28,7 @@ export const toggleTaskAction = (
 });
 
 export const toggledTaskAction = (
-  payload: types.ToggleTasksSuccessPayload,
+  payload: types.ToggleTaskSuccessPayload,
 ): types.ToggleTaskSuccess => {
   return {
     type: taskTypes.TASK_TOGGLED,

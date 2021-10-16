@@ -32,13 +32,13 @@ export const filterSorted = (tasks: Task[], sorting: SortingFilters): Task[] => 
     }
     case SortingFilters.CREATED_ASCENDING:
       return tasks
-        .sort((x, y) => +new Date(y.created) - +new Date(x.created))
+        .sort((x, y) => +new Date(y.createdAt as Date) - +new Date(x.createdAt as Date))
         .map((task) => {
           return task;
         });
     case SortingFilters.CREATED_DESCENDING:
       return tasks
-        .sort((x, y) => +new Date(x.created) - +new Date(y.created))
+        .sort((x, y) => +new Date(x.createdAt as Date) - +new Date(y.createdAt as Date))
         .map((task) => {
           return task;
         });
@@ -48,13 +48,13 @@ export const filterSorted = (tasks: Task[], sorting: SortingFilters): Task[] => 
 };
 
 export const getVisibleTasks = (
-  tasks: { tasks: Task[] },
+  data: { tasks: Task[] },
   filters: {
     visibility: VisibilityFilters;
     sorting: SortingFilters;
   },
 ): Task[] => {
-  return filterSorted(filterVisible(tasks.tasks, filters.visibility), filters.sorting);
+  return filterSorted(filterVisible(data.tasks, filters.visibility), filters.sorting);
 };
 
 export const useVisibilityFilter = (): VisibilityFilters => {

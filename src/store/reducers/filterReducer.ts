@@ -3,7 +3,7 @@ import { FilterActions, FilterState } from '../types';
 
 const initialState: FilterState = {
   visibility: VisibilityFilters.SHOW_ALL,
-  sorting: SortingFilters.DEADLINE_DESCENDING,
+  sorting: SortingFilters.DEADLINE_ASCENDING,
 };
 
 export const filterReducer = (

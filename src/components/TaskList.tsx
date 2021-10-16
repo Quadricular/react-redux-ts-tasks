@@ -11,16 +11,17 @@ const TaskList = (): JSX.Element => {
 
   return (
     <ul>
-      {tasks.map((task: ITask) => (
-        <Task
-          key={task.id}
-          data={{ ...task }}
-          toggleTask={() =>
-            dispatch(toggleTaskAction({ id: task.id, completed: task.completed }))
-          }
-          deleteTask={() => dispatch(deleteTaskAction({ id: task.id }))}
-        />
-      ))}
+      {tasks &&
+        tasks.map((task: ITask) => (
+          <Task
+            key={task._id}
+            data={{ ...task }}
+            toggleTask={() =>
+              dispatch(toggleTaskAction({ id: task._id, completed: task.completed }))
+            }
+            deleteTask={() => dispatch(deleteTaskAction({ id: task._id }))}
+          />
+        ))}
     </ul>
   );
 };
