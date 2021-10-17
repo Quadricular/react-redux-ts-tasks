@@ -10,7 +10,7 @@ const TaskList = (): JSX.Element => {
   const tasks = useGetVisibleTasks();
 
   return (
-    <ul>
+    <ul id="todo-list">
       {tasks &&
         tasks.map((task: ITask) => (
           <Task
