@@ -1,29 +1,33 @@
 module.exports = {
-  extends: ['plugin:prettier/recommended'],
+  extends: ['plugin:prettier/recommended', 'plugin:jest/recommended'],
   env: {
     browser: true,
-    node: true
+    node: true,
+    jest: true,
   },
   overrides: [
     {
       files: ['**/*.tsx'],
-      plugins: ['@typescript-eslint', 'react-hooks'],
+      plugins: ['@typescript-eslint', 'react-hooks', 'jest'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
+          jsx: true,
+        },
       },
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:react/recommended',
         'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended'
+        'plugin:prettier/recommended',
       ],
       settings: {
         react: {
-          version: 'detect'
-        }
+          version: 'detect',
+        },
+        jest: {
+          version: '27.2.5',
+        },
       },
       rules: {
         'react/no-unused-prop-types': 'off',
@@ -33,24 +37,21 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'warn',
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': 'warn',
-        'consistent-return': 'off'
-      }
+        'consistent-return': 'off',
+      },
     },
     {
       files: ['**/*.ts'],
       plugins: ['@typescript-eslint', 'react-hooks'],
       parser: '@typescript-eslint/parser',
 
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended'
-      ],
+      extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
       rules: {
         'prettier/prettier': 0,
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': 'warn',
-        '@typescript-eslint/explicit-function-return-type': 'off'
-      }
-    }
-  ]
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+  ],
 };
