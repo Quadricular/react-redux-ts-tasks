@@ -1,5 +1,5 @@
-import { ModalActionTypes } from '../constants';
-import { ModalAction, ModalActionPayload } from '../types';
+import { ModalActionTypes } from './constants';
+import { ModalAction, ModalActionPayload } from './types';
 
 export function showModal(payload: ModalActionPayload): ModalAction {
   return {

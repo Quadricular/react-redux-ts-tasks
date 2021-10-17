@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/reducers';
+import { RootState } from '../store/rootReducer';
 import { SortingFilters, VisibilityFilters } from '../store/constants';
 import { Task } from '../models/task';
 

@@ -4,7 +4,7 @@ import { takeEvery, call, put, all } from 'redux-saga/effects';
 
 import TasksService from '../../services/TasksService';
 import * as actions from '../actions';
-import { taskTypes } from '../constants';
+import { TaskTypes } from './constants';
 import {
   ToggleTaskRequest,
   AddTaskRequest,
@@ -15,7 +15,7 @@ import {
   AddTaskSuccessPayload,
   EditTaskSuccessPayload,
   DeleteTaskSuccessPayload,
-} from '../types';
+} from './types';
 //Worker Sagas
 function* loadTasks(): SagaIterator {
   try {
@@ -105,23 +105,23 @@ function* deleteTask(action: DeleteTaskRequest): SagaIterator {
 
 //Watcher Sagas
 function* watchLoadTasks() {
-  yield takeEvery(taskTypes.LOAD_TASKS, loadTasks);
+  yield takeEvery(TaskTypes.LOAD_TASKS, loadTasks);
 }
 
 function* watchToggleTask() {
-  yield takeEvery(taskTypes.TOGGLE_TASK, toggleTask);
+  yield takeEvery(TaskTypes.TOGGLE_TASK, toggleTask);
 }
 
 function* watchAddTask() {
-  yield takeEvery(taskTypes.ADD_TASK, addTask);
+  yield takeEvery(TaskTypes.ADD_TASK, addTask);
 }
 
 function* watchEditTask() {
-  yield takeEvery(taskTypes.EDIT_TASK, editTask);
+  yield takeEvery(TaskTypes.EDIT_TASK, editTask);
 }
 
 function* watchDeleteTask() {
-  yield takeEvery(taskTypes.DELETE_TASK, deleteTask);
+  yield takeEvery(TaskTypes.DELETE_TASK, deleteTask);
 }
 
 export function* tasksSaga(): Generator<CombinatorEffect<string, unknown>> {

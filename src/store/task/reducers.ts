@@ -1,4 +1,4 @@
-import { taskTypes } from '../constants';
+import { TaskTypes } from '../constants';
 import { TasksActions, TasksState } from '../types';
 import { Task } from '../../models/task';
 
@@ -10,24 +10,24 @@ const initialState: TasksState = {
 
 export const tasksReducer = (state = initialState, action: TasksActions): TasksState => {
   switch (action.type) {
-    case taskTypes.LOAD_TASKS:
+    case TaskTypes.LOAD_TASKS:
       return {
         ...state,
         pending: true,
       };
-    case taskTypes.TASKS_LOADED:
+    case TaskTypes.TASKS_LOADED:
       return {
         ...state,
         pending: false,
         tasks: action.payload.data.tasks as Task[],
         error: null,
       };
-    case taskTypes.TOGGLE_TASK:
+    case TaskTypes.TOGGLE_TASK:
       return {
         ...state,
         pending: false,
       };
-    case taskTypes.TASK_TOGGLED:
+    case TaskTypes.TASK_TOGGLED:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
@@ -37,13 +37,13 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
         ),
         pending: false,
       };
-    case taskTypes.TASK_ADDED:
+    case TaskTypes.TASK_ADDED:
       return {
         ...state,
         tasks: [...state.tasks, { ...action.payload.data.task }],
         pending: false,
       };
-    case taskTypes.TASK_EDITED:
+    case TaskTypes.TASK_EDITED:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
@@ -53,7 +53,7 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
         ),
         pending: false,
       };
-    case taskTypes.TASK_DELETED:
+    case TaskTypes.TASK_DELETED:
       const { _id } = action.payload.data.task;
 
       console.log(action.payload);

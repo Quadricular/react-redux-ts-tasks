@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { sortingFiltersList, SortingFilters } from '../store/constants';
-import { setSortingFilter } from '../store/actions/filterActions';
+import { SortingFiltersList, SortingFilters } from '../store/constants';
+import { setSortingFilter } from '../store/actions';
 
 const FilterDropdown = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const FilterDropdown = (): JSX.Element => {
         }
         className="browser-default custom-select"
       >
-        {sortingFiltersList.map((sortBy, key) => (
+        {SortingFiltersList.map((sortBy, key) => (
           <option key={key} value={sortBy.type} defaultValue={sortBy.type}>
             {sortBy.label}
           </option>

@@ -3,7 +3,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideModal } from '../../store/actions';
-import { RootState } from '../../store/reducers';
+import { RootState } from '../../store/rootReducer';
 
 import './modal.css';
 

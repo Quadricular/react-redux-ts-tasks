@@ -1,5 +1,5 @@
-import { VisibilityFilters, Filters, SortingFilters } from '../constants';
-import * as types from '../types';
+import { VisibilityFilters, Filters, SortingFilters } from './constants';
+import * as types from './types';
 
 export const setVisibilityFilter = (
   filter: VisibilityFilters,

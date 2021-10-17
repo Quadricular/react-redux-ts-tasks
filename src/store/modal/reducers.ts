@@ -1,6 +1,6 @@
-import { ModalAction } from '../types';
-import { ModalActionTypes } from '../constants';
-import { ModalState } from '../types';
+import { ModalAction } from './types';
+import { ModalActionTypes } from './constants';
+import { ModalState } from './types';
 
 const initialState: ModalState = {
   modal: false,

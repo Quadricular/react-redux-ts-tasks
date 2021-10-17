@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import { tasksReducer } from './tasksReducer';
-import { filterReducer } from './filterReducer';
-import { modalReducer } from './modalReducer';
+import { tasksReducer } from './task/reducers';
+import { filterReducer } from './filter/reducers';
+import { modalReducer } from './modal/reducers';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,

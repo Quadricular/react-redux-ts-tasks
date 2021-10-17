@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, UseFormRegister, Control, UseFormHandleSubmit } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Task, TaskErrors, taskSchema } from '../models/task';
-import { addTaskAction, editTaskAction } from '../store/actions/tasksActions';
-import { RootState } from '../store/reducers';
+import { addTaskAction, editTaskAction } from '../store/actions';
+import { RootState } from '../store/rootReducer';
 import { getVisibleTasks } from './filterHooks';
 import { EditTaskRequest, AddTaskRequest } from '../store/types';
 

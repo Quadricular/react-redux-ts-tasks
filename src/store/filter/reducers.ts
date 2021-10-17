@@ -1,5 +1,5 @@
 import { VisibilityFilters, SortingFilters, Filters } from '../constants';
-import { FilterActions, FilterState } from '../types';
+import { FilterActions, FilterState } from './types';
 
 const initialState: FilterState = {
   visibility: VisibilityFilters.SHOW_ALL,

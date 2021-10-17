@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { showModal, fetchTasksAction } from '../store/actions';
-import { RootState } from '../store/reducers';
+import { RootState } from '../store/rootReducer';
 import Tabs from '../components/Tabs';
 import AddTask from '../components/AddTask';
 import EditTask from '../components/EditTask';

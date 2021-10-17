@@ -1,4 +1,4 @@
-export { showModal, hideModal } from './modalActions';
+export { showModal, hideModal } from './modal/actions';
 export {
   fetchTasksAction,
   fetchedTasksAction,
@@ -10,6 +10,6 @@ export {
   editedTaskAction,
   deleteTaskAction,
   deletedTaskAction,
-} from './tasksActions';
+} from './task/actions';
 
-export { setVisibilityFilter, setSortingFilter } from './filterActions';
+export { setVisibilityFilter, setSortingFilter } from './filter/actions';

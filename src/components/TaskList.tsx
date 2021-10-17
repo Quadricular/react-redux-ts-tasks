@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Task from './Task';
 import { Task as ITask } from '../models/task';
-import { toggleTaskAction, deleteTaskAction } from '../store/actions/tasksActions';
+import { toggleTaskAction, deleteTaskAction } from '../store/actions';
 import { useGetVisibleTasks } from '../hooks/taskHooks';
 
 const TaskList = (): JSX.Element => {
