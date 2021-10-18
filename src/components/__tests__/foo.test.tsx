@@ -1,12 +1,12 @@
+// import function from the application source
 import sum from '../common/foo';
 
-test('basic', () => {
-  expect(sum()).toBe(0);
-});
+describe('TypeScript spec', () => {
+  it('works', () => {
+    cy.wrap('foo').should('equal', 'foo');
+  });
 
-test('basic again', () => {
-  expect(sum(1, 2)).toBe(3);
+  it('calls TS source file', () => {
+    cy.wrap(sum(1, 2, 3, 4)).should('equal', 10);
+  });
 });
-
-// uncomment to get a lint error
-// const aTestString: string = 42;

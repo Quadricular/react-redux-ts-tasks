@@ -1,17 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
 import Tabs from '../Tabs';
+import { mount } from '../../config/test-utils';
 
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(),
-  useDispatch: jest.fn(),
-}));
-
-describe('<Tabs />', () => {
+describe('<Tabs/>', () => {
   it('renders without errors', () => {
-    render(<Tabs />);
+    mount(<Tabs />);
+
+    cy.findByRole('button', { name: /active/i }).click();
+
+    cy.findByRole('button', { name: /completed/i }).click();
   });
 });

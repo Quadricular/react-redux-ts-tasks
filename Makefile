@@ -20,6 +20,26 @@ rmv:
 	@echo "\n[ Removing all attached volumes ]"
 	docker-compose down -v
 
+e2e:
+	@echo "\n[ Running original Cypress e2e tests, make sure X Server is on... ]"
+	npm run cy:open
+
+unit-test:
+	@echo "\n[ Running unit test using test runner... ]"
+	npm run test
+
+unit-test-open:
+	@echo "\n[ Opening unit test runner window, make sure X Server is on ... ]"
+	npm run test:open
+
+nyc:
+	npx nyc report --reporter=text-summary
+
+nyc-text:
+	npx nyc report --reporter=text
+
+nyc-lcov:
+	npx nyc report --reporter=lcov
 
 acr-build:
 	@echo "\n[ Using Azure Container Registry to build images... ]"

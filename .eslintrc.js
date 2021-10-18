@@ -1,14 +1,13 @@
 module.exports = {
-  extends: ['plugin:prettier/recommended', 'plugin:jest/recommended'],
+  extends: ['plugin:prettier/recommended'],
   env: {
     browser: true,
     node: true,
-    jest: true,
   },
   overrides: [
     {
       files: ['**/*.tsx'],
-      plugins: ['@typescript-eslint', 'react-hooks', 'jest'],
+      plugins: ['@typescript-eslint', 'react-hooks'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaFeatures: {
@@ -24,9 +23,6 @@ module.exports = {
       settings: {
         react: {
           version: 'detect',
-        },
-        jest: {
-          version: '27.2.5',
         },
       },
       rules: {
@@ -52,6 +48,10 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'warn',
         '@typescript-eslint/explicit-function-return-type': 'off',
       },
+    },
+    {
+      files: ['**/*.js'],
+      parser: '@babel/eslint-parser',
     },
   ],
 };
