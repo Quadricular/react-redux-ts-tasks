@@ -18,8 +18,8 @@ export function createTestStore(): Store {
   return store;
 }
 
-function mount(ui: JSX.Element): Cypress.Chainable<MountReturn> {
-  return cyMount(<Provider store={createTestStore()}>{ui}</Provider>);
+function mount(ui: JSX.Element, store?: Store): Cypress.Chainable<MountReturn> {
+  return cyMount(<Provider store={store ? store : createTestStore()}>{ui}</Provider>);
 }
 
 // re-export everything

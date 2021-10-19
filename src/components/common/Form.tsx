@@ -16,7 +16,7 @@ const TaskForm = ({
   return (
     <>
       <strong>
-        <p>{`${add ? 'Add' : 'Edit'} Task`}</p>
+        <h2 style={{ fontSize: 18 }}>{`${add ? 'Add' : 'Edit'} Task`}</h2>
       </strong>
       {submitting ? (
         add ? (
@@ -27,9 +27,12 @@ const TaskForm = ({
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <>
-            <label htmlFor="name">
+            <label id="name" htmlFor="name">
               <div>name</div>
-              <input {...register('name', { required: 'Name is required.' })} />
+              <input
+                aria-labelledby="name"
+                {...register('name', { required: 'Name is required.' })}
+              />
             </label>
             <br />
             <ErrorMessage errors={errors} name="name" />
