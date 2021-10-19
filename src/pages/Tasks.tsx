@@ -12,6 +12,7 @@ import TaskList from '../components/TaskList';
 import FilterDropdown from '../components/FilterDropdown';
 
 export default function Tasks(): JSX.Element {
+  const title = 'Tasks';
   const dispatch = useDispatch();
   const { pending, error } = useSelector((state: RootState) => state.tasks);
 
@@ -19,11 +20,14 @@ export default function Tasks(): JSX.Element {
 
   React.useEffect(() => {
     dispatch(fetchTasksAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <div style={{ display: 'flex' }}>
+        <h1 style={{ fontSize: 20, fontWeight: 800, margin: '0px 10px 0px  10px' }}>
+          {title}
+        </h1>
         <Tabs />
         {pending ? (
           <Fallback />

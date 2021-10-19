@@ -1,13 +1,14 @@
 import React, { Suspense } from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import Fallback from './components/common/Fallback';
+import type { History } from 'history';
 
 const Tasks = React.lazy(() => import('./pages/Tasks'));
 const PageNotFound = React.lazy(() => import('./components/common/PageNotFound'));
 
-export default function Router() {
+export default function RouterSuspense({ history }: { history: History }): JSX.Element {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Suspense fallback={<Fallback />}>
         <Switch>
           <Route path="/" exact render={() => <Redirect to="/tasks" />} />
@@ -15,6 +16,6 @@ export default function Router() {
           <Route render={() => <PageNotFound />} />
         </Switch>
       </Suspense>
-    </BrowserRouter>
+    </Router>
   );
 }

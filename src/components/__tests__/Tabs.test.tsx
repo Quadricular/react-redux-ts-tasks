@@ -1,6 +1,6 @@
 import React from 'react';
 import Tabs from '../Tabs';
-import { mount } from '../../config/test-utils';
+import { mount } from '../../test-utils';
 
 describe('<Tabs/>', () => {
   it('renders without errors', () => {

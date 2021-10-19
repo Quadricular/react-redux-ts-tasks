@@ -20,10 +20,6 @@ rmv:
 	@echo "\n[ Removing all attached volumes ]"
 	docker-compose down -v
 
-e2e:
-	@echo "\n[ Running original Cypress e2e tests, make sure X Server is on... ]"
-	npm run cy:open
-
 unit-test:
 	@echo "\n[ Running unit test using test runner... ]"
 	npm run test

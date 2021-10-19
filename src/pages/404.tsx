@@ -1,4 +1,13 @@
 import React from 'react';
-export default function Error(): React.ReactElement {
-  return <div>Error 404</div>;
-}
+import { Link } from 'react-router-dom';
+
+const PageNotFound = (): JSX.Element => {
+  return (
+    <>
+      <h2>404 - Page Not Found</h2>
+      <Link to="/">Back to Home</Link>
+    </>
+  );
+};
+
+export default PageNotFound;

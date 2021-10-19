@@ -4,6 +4,7 @@ import Flatpickr from 'react-flatpickr';
 import { useCurrentTask } from '../../hooks/taskHooks';
 import './Datepicker.css';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element => {
   const currentTask = useCurrentTask();
 

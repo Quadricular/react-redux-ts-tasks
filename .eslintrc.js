@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       files: ['**/*.js'],
-      parser: '@babel/eslint-parser',
+      parser: '@typescript-eslint/parser',
     },
   ],
 };
