@@ -6,6 +6,13 @@ import { showModal } from '../store/actions';
 import { useDispatch } from 'react-redux';
 import { Task as ITask } from '../models/task';
 import format from 'date-fns/format';
+import { motion } from 'framer-motion';
+
+const transition = {
+  type: 'spring',
+  damping: 25,
+  stiffness: 120,
+};
 
 const Task = ({
   data,
@@ -19,7 +26,10 @@ const Task = ({
   const dispatch = useDispatch();
   return (
     <>
-      <li
+      <motion.li
+        key={data._id}
+        layout
+        transition={transition}
         style={{
           textDecoration: data.completed ? 'line-through' : 'none',
         }}
@@ -45,7 +55,7 @@ const Task = ({
         >
           delete
         </button>
-      </li>
+      </motion.li>
     </>
   );
 };

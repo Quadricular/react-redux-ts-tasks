@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './css/index.scss';
 import App from './pages/App';
 import store from './store';
 import { createBrowserHistory } from 'history';

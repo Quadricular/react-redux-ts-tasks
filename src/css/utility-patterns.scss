@@ -1,0 +1,68 @@
+body {
+  @apply antialiased bg-gray-100 text-gray-600;
+}
+// Typography
+h1 {
+  @apply text-2xl md:text-3xl text-black font-bold;
+}
+
+h2 {
+  @apply text-center text-black text-xl font-semibold;
+}
+
+.btn,
+.btn-lg,
+.btn-sm,
+.btn-xs {
+  @apply font-medium text-sm inline-flex items-center justify-center border border-transparent rounded leading-5 shadow-sm transition duration-150 ease-in-out;
+}
+
+.btn-lite {
+  @apply font-medium text-sm inline-flex items-center justify-center leading-5  transition duration-150 ease-in-out px-3 py-2;
+}
+
+.btn {
+  @apply px-3 py-2;
+}
+
+.btn-lg {
+  @apply px-4 py-3;
+}
+
+.btn-sm {
+  @apply px-2 py-1;
+}
+
+.btn-xs {
+  @apply px-2 py-0.5;
+}
+
+.tab {
+  @apply inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white  text-gray-500 duration-150 ease-in-out;
+}
+
+.tab-active {
+  @apply inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-gray-700 hover:bg-yellow-400 text-white hover:text-black duration-150 ease-in-out;
+}
+
+// Forms
+
+textarea,
+input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+textarea,
+input:focus {
+  @apply outline-none;
+}
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

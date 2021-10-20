@@ -10,9 +10,10 @@ import Fallback from '../components/common/Fallback';
 import Modal from '../components/common/Modal';
 import TaskList from '../components/TaskList';
 import FilterDropdown from '../components/FilterDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Tasks(): JSX.Element {
-  const title = 'Tasks';
   const dispatch = useDispatch();
   const { pending, error } = useSelector((state: RootState) => state.tasks);
 
@@ -29,7 +30,7 @@ export default function Tasks(): JSX.Element {
         <div className="flex justify-between sm:items-center mb-8">
           {/* Left: Title */}
           <div className="mb-4 sm:mb-0">
-            <h1 className="text-2xl md:text-3xl text-black font-bold">Tasks</h1>
+            <h1>Tasks</h1>
           </div>
 
           <div className="flex justify-between">
@@ -39,7 +40,11 @@ export default function Tasks(): JSX.Element {
               type="button"
               onClick={() => dispatch(showModal({ add: true }))}
             >
-              Add Task
+              <FontAwesomeIcon
+                className="w-4 h-4 fill-current opacity-50 flex-shrink-0"
+                icon={faPlus}
+              />
+              <span className="ml-2">Add Task</span>
             </button>
 
             {/* Right: Actions */}
