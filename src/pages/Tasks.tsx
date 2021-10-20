@@ -23,40 +23,56 @@ export default function Tasks(): JSX.Element {
   }, [dispatch]);
 
   return (
-    <div>
-      <div className="flex">
-        <h1 style={{ fontSize: 20, fontWeight: 800, margin: '0px 10px 0px  10px' }}>
-          {title}
-        </h1>
-        <Tabs />
-        {pending ? (
-          <Fallback />
-        ) : error ? (
-          <div>Error</div>
-        ) : (
-          <>
-            {add ? (
-              <Modal>
-                <AddTask />
-              </Modal>
-            ) : (
-              <Modal>
-                <EditTask />
-              </Modal>
-            )}
+    <main className="h-screen overflow-y-scroll no-scrollbar">
+      <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-2xl mx-auto ">
+        {/* Page header */}
+        <div className="flex justify-between sm:items-center mb-8">
+          {/* Left: Title */}
+          <div className="mb-4 sm:mb-0">
+            <h1 className="text-2xl md:text-3xl text-black font-bold">Tasks</h1>
+          </div>
 
+          <div className="flex justify-between">
+            <FilterDropdown />
             <button
-              style={{ marginLeft: 20 }}
+              className="btn bg-black hover:bg-yellow-400 text-white hover:text-black h-12"
               type="button"
               onClick={() => dispatch(showModal({ add: true }))}
             >
               Add Task
             </button>
-            <FilterDropdown />
-          </>
+
+            {/* Right: Actions */}
+            <div>
+              {/* Add board button */}
+
+              {add ? (
+                <Modal>
+                  <AddTask />
+                </Modal>
+              ) : (
+                <Modal>
+                  <EditTask />
+                </Modal>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Filters */}
+
+        <div className="flex justify-between">
+          <Tabs />
+          {/* <FilterAmount /> */}
+        </div>
+        {pending ? (
+          <Fallback height="96" text="Loading Tasks, please don't close this page." />
+        ) : error ? (
+          <div>Error</div>
+        ) : (
+          <TaskList />
         )}
       </div>
-      <TaskList />
-    </div>
+    </main>
   );
 }
