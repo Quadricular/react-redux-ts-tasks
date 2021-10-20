@@ -52,11 +52,11 @@ export default function Tasks(): JSX.Element {
               {/* Add board button */}
 
               {add ? (
-                <Modal>
+                <Modal title="Add Task">
                   <AddTask />
                 </Modal>
               ) : (
-                <Modal>
+                <Modal title="Edit Task">
                   <EditTask />
                 </Modal>
               )}

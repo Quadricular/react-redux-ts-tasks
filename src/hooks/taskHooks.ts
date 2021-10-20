@@ -10,7 +10,7 @@ import { getVisibleTasks } from './filterHooks';
 import { EditTaskRequest, AddTaskRequest } from '../store/types';
 
 export interface FormTypes<T, E> {
-  add: boolean;
+  add?: boolean;
   register: UseFormRegister<T>;
   submitting: boolean;
   onSubmit: (
