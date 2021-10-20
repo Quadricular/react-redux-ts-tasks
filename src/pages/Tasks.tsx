@@ -24,7 +24,7 @@ export default function Tasks(): JSX.Element {
 
   return (
     <div>
-      <div style={{ display: 'flex' }}>
+      <div className="flex">
         <h1 style={{ fontSize: 20, fontWeight: 800, margin: '0px 10px 0px  10px' }}>
           {title}
         </h1>
