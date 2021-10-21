@@ -26,7 +26,7 @@ const Backdrop = ({ children, onClick }: BackdropProps) => {
 //for animation
 const dropIn = {
   hidden: {
-    y: '-100vh',
+    y: '-50vh',
     opacity: 0,
   },
   visible: {
@@ -40,7 +40,7 @@ const dropIn = {
     },
   },
   exit: {
-    y: '100vh',
+    y: '50vh',
     opacity: 0,
     transition: {
       duration: 0.3,

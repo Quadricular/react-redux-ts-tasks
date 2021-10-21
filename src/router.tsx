@@ -4,7 +4,7 @@ import Fallback from './components/common/Fallback';
 import type { History } from 'history';
 
 const Tasks = React.lazy(() => import('./pages/Tasks'));
-const PageNotFound = React.lazy(() => import('./components/common/PageNotFound'));
+const PageNotFound = React.lazy(() => import('./pages/404'));
 
 export default function RouterSuspense({ history }: { history: History }): JSX.Element {
   return (

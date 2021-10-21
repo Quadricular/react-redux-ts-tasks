@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { showModal, fetchTasksAction } from '../store/actions';
@@ -6,17 +6,17 @@ import { RootState } from '../store/rootReducer';
 import Tabs from '../components/Tabs';
 import AddTask from '../components/AddTask';
 import EditTask from '../components/EditTask';
-import Fallback from '../components/common/Fallback';
 import Modal from '../components/common/Modal';
 import TaskList from '../components/TaskList';
 import FilterDropdown from '../components/FilterDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useGetVisibleTasks } from '../hooks/taskHooks';
 
 export default function Tasks(): JSX.Element {
   const dispatch = useDispatch();
   const { pending, error } = useSelector((state: RootState) => state.tasks);
-
+  const tasks = useGetVisibleTasks();
   const { add } = useSelector((state: RootState) => state.modal);
 
   React.useEffect(() => {
@@ -36,7 +36,7 @@ export default function Tasks(): JSX.Element {
           <div className="flex justify-between">
             <FilterDropdown />
             <button
-              className="btn bg-black hover:bg-yellow-400 text-white hover:text-black h-12"
+              className="btn bg-black hover:bg-yellow-600 text-white"
               type="button"
               onClick={() => dispatch(showModal({ add: true }))}
             >
@@ -68,15 +68,9 @@ export default function Tasks(): JSX.Element {
 
         <div className="flex justify-between">
           <Tabs />
-          {/* <FilterAmount /> */}
         </div>
-        {pending ? (
-          <Fallback height="96" text="Loading Tasks, please don't close this page." />
-        ) : error ? (
-          <div>Error</div>
-        ) : (
-          <TaskList />
-        )}
+
+        <TaskList tasks={tasks} pending={pending} error={error} />
       </div>
     </main>
   );

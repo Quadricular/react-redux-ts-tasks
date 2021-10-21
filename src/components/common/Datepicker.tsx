@@ -9,6 +9,7 @@ import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element => {
   const currentTask = useCurrentTask();
   const options = {
+    minDate: 'today',
     static: true,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     monthSelectorType: 'static' as any,

@@ -1,5 +1,6 @@
 body {
   @apply antialiased bg-gray-100 text-gray-600;
+  @apply overflow-y-hidden;
 }
 // Typography
 h1 {
@@ -42,7 +43,7 @@ h2 {
 }
 
 .tab-active {
-  @apply inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-gray-700 hover:bg-yellow-400 text-white hover:text-black duration-150 ease-in-out;
+  @apply inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-gray-700 hover:bg-yellow-600 text-white  duration-150 ease-in-out;
 }
 
 // Forms

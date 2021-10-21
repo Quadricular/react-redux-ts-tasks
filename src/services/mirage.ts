@@ -40,6 +40,9 @@ export function makeServer(): Server<
         createdAt() {
           return faker.date.recent();
         },
+        updatedAt() {
+          return faker.date.soon();
+        },
         deadline() {
           return faker.date.soon();
         },

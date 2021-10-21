@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { hideModal } from '../../store/actions';
 
 const TaskForm = ({
-  add,
   submitting,
   register,
   errors,
