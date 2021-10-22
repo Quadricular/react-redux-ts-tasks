@@ -11,7 +11,7 @@ const PageNotFound = (): JSX.Element => {
           <div className="mb-4 sm:mb-0">
             <h1>Oops! wrong way...</h1>
             <br />
-            <p>404 - Page Not Found</p>
+            <h2 className="text-left">404 - Page Not Found</h2>
             <br />
             <Link to="/">Back to Home</Link>
           </div>

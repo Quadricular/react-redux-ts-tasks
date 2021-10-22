@@ -41,10 +41,10 @@ const TaskList = ({
     );
   };
 
-  const motionComponent = (children: JSX.Element) => {
+  const motionComponent = (children: JSX.Element, id: string) => {
     return (
       <motion.section
-        key="content"
+        key={id}
         initial="collapsed"
         animate="open"
         exit="collapsed"
@@ -93,9 +93,12 @@ const TaskList = ({
 
                       <ul className="w-full">{tasksList(tasks)}</ul>
                     </div>,
+                    'tasks',
                   )}
 
-                  {!pending && tasks.length === 0 && motionComponent(<EmptyState />)}
+                  {!pending &&
+                    tasks.length === 0 &&
+                    motionComponent(<EmptyState />, 'empty')}
                 </>
               )}
             </AnimatePresence>

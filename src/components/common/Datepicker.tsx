@@ -31,6 +31,7 @@ const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element =>
         return (
           <div className="fixed text-gray-500 hover:text-yellow-500">
             <Flatpickr
+              aria-labelledby="deadline"
               className="form-input pl-9  hover:text-yellow-600 font-medium focus:border-gray-300 w-60"
               options={options}
               onChange={field.onChange}

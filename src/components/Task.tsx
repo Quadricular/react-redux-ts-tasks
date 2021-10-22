@@ -41,7 +41,7 @@ const TaskItem = ({
                 <input
                   type="checkbox"
                   className="form-checkbox"
-                  checked={data.completed}
+                  defaultChecked={data.completed}
                 />
                 <div className="max-w-sm">
                   <p

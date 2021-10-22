@@ -9,18 +9,16 @@ const Link = ({
   children: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element => (
-  <li className="m-1">
-    <button
-      className={active ? 'tab-active' : 'tab'}
-      onClick={onClick}
-      disabled={active}
-      style={{
-        marginLeft: '4px',
-      }}
-    >
-      {children}
-    </button>
-  </li>
+  <button
+    className={active ? 'tab-active m-1' : 'tab m-1'}
+    onClick={onClick}
+    disabled={active}
+    style={{
+      marginLeft: '4px',
+    }}
+  >
+    {children}
+  </button>
 );
 
 export default Link;

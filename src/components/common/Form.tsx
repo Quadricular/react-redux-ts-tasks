@@ -47,8 +47,12 @@ const TaskForm = ({
             {/* End */}
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1" htmlFor="email">
-              Date
+            <label
+              id="deadline"
+              className="block text-sm font-medium mb-1"
+              htmlFor="email"
+            >
+              Deadline
             </label>
             <Datepicker control={control} />
           </div>

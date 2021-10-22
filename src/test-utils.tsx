@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import { mount as cyMount, MountReturn } from '@cypress/react';
 // Import your own reducer
+import './css/index.scss';
 import rootReducer from './store/rootReducer';
 import rootSaga from './store/rootSaga';
 import { makeServer as makeMockServer } from './services/mirage';

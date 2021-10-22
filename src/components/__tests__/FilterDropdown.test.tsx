@@ -7,6 +7,10 @@ describe('<FilterDropdown/>', () => {
   const store = createTestStore();
   beforeEach(() => {
     mount(<FilterDropdown />, store);
+    cy.findByRole('button', { name: /select date range/i }).click();
+  });
+  afterEach(() => {
+    cy.findByRole('button', { name: /select date range/i }).click();
   });
 
   it('renders using default state (Deadline Ascending) without errors and selects Deadline Descending', () => {
@@ -14,9 +18,12 @@ describe('<FilterDropdown/>', () => {
       'eq',
       SortingFilters.DEADLINE_ASCENDING,
     );
-    cy.findByRole('combobox').select(SortingFilters.DEADLINE_DESCENDING);
+    // cy.findByRole('combobox').select(SortingFilters.DEADLINE_DESCENDING);
 
-    cy.findByRole('option', { name: 'Deadline (Descending)' });
+    // cy.findByRole('option', { name: 'Deadline (Descending)' });
+    cy.findByRole('button', {
+      name: /deadline \(descending\)/i,
+    }).click();
   });
 
   it('updates store visibility to Deadline (Descending) and selects Created (Ascending)', () => {
@@ -24,7 +31,7 @@ describe('<FilterDropdown/>', () => {
       'eq',
       SortingFilters.DEADLINE_DESCENDING,
     );
-    cy.findByRole('combobox').select(SortingFilters.CREATED_ASCENDING);
+    cy.findByRole('button', { name: /created \(ascending\)/i }).click();
   });
 
   it('updates store visibility to Created (Ascending) and selects Created (Descending)', () => {
@@ -32,7 +39,9 @@ describe('<FilterDropdown/>', () => {
       'eq',
       SortingFilters.CREATED_ASCENDING,
     );
-    cy.findByRole('combobox').select(SortingFilters.CREATED_DESCENDING);
+    cy.findByRole('button', {
+      name: /created \(descending\)/i,
+    }).click();
   });
 
   it('updates store visibility to Created (Descending) after select', () => {
