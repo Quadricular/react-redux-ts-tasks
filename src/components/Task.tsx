@@ -93,6 +93,7 @@ const TaskItem = ({
                 <div className="flex flex-wrap items-center">
                   {/* Edit */}
                   <button
+                    aria-label="Edit"
                     onClick={() => dispatch(showModal({ add: false, currentTask: data }))}
                   >
                     <FontAwesomeIcon

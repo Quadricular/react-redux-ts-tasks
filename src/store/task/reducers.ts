@@ -2,7 +2,7 @@ import { TaskTypes } from '../constants';
 import { TasksActions, TasksState } from '../types';
 import { Task } from '../../models/task';
 
-const initialState: TasksState = {
+export const initialState: TasksState = {
   pending: false,
   tasks: [],
   error: null,

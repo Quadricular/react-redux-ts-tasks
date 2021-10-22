@@ -1,15 +1,13 @@
 import React from 'react';
 import techlife from '../../assets/tech-life.svg';
 
-function EmptyState(pending: any): JSX.Element {
-  console.log(pending.pending);
+function EmptyState(): JSX.Element {
   return (
-    <div className={`z-0  overflow-hidden   ${!pending.pending ? 'flex' : 'hidden'}`}>
+    <div className={`z-0  overflow-hidden`}>
       {/* Content area */}
 
       <div
-        className={`relative ${
-          !pending.pending ? 'flex' : 'hidden'
+        className={`relative 
         } flex-col flex-1 overflow-y-auto overflow-x-hidden  mb-20`}
       >
         <main>

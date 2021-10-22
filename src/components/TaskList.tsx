@@ -99,6 +99,18 @@ const TaskList = ({
                   {!pending &&
                     tasks.length === 0 &&
                     motionComponent(<EmptyState />, 'empty')}
+                  {error && (
+                    <>
+                      <div className="h-40 items-center my-20">
+                        <h1 className="text-center ">
+                          Oh no! An error has been produced
+                        </h1>
+                        <h3 className="text-center">
+                          Please verify your connection and try again later
+                        </h3>
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </AnimatePresence>
