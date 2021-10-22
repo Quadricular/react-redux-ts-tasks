@@ -1,6 +1,10 @@
-## **Quick Start**
+# React Redux Typescript Tasks App
+
+![CLIENT_SCREENSHOT](https://user-images.githubusercontent.com/34385962/138495939-d7472060-0965-4b47-897f-50084176471d.png)
 
 [Link to demo](https://tasks-client-node.azurewebsites.net/tasks)
+
+## **Quick Start**
 
 Requirements:
 
