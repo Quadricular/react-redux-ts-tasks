@@ -1,4 +1,4 @@
-FROM node:16.0.0 AS builder
+FROM node:lts-alpine3.14 AS builder
 
 # Use /app as the CWD
 WORKDIR /app
