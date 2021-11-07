@@ -1,7 +1,10 @@
 import React from 'react';
 import techlife from '../../assets/tech-life.svg';
+import { useDispatch } from 'react-redux';
+import { showModal } from '../../store/actions';
 
 function EmptyState(): JSX.Element {
+  const dispatch = useDispatch();
   return (
     <div className={`z-0  overflow-hidden`}>
       {/* Content area */}
@@ -16,12 +19,15 @@ function EmptyState(): JSX.Element {
               <img alt="Tech Life" src={techlife} />
             </div>
             <h2 className="text-2xl text-gray-800 font-bold mb-2">
-              There&apos;s no tasks yet
+              There&apos;s no tasks in this view
             </h2>
             <div className="mb-6">
               You can fill the following form to create a new task
             </div>
-            <button className="btn bg-black hover:bg-yellow-600 text-white">
+            <button
+              onClick={() => dispatch(showModal({ add: true }))}
+              className="btn bg-black hover:bg-yellow-600 text-white"
+            >
               <svg
                 className="w-4 h-4 fill-current opacity-50 flex-shrink-0"
                 viewBox="0 0 16 16"

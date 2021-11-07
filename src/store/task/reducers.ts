@@ -19,7 +19,7 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
       return {
         ...state,
         pending: false,
-        tasks: action.payload.data.tasks as Task[],
+        tasks: action.payload.data as Task[],
         error: null,
       };
     case TaskTypes.TOGGLE_TASK:
@@ -31,8 +31,8 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task._id === action.payload.data.task._id
-            ? { ...task, ...action.payload.data.task }
+          task._id === action.payload.data._id
+            ? { ...task, ...action.payload.data }
             : task,
         ),
         pending: false,
@@ -40,21 +40,21 @@ export const tasksReducer = (state = initialState, action: TasksActions): TasksS
     case TaskTypes.TASK_ADDED:
       return {
         ...state,
-        tasks: [...state.tasks, { ...action.payload.data.task }],
+        tasks: [...state.tasks, { ...action.payload.data }],
         pending: false,
       };
     case TaskTypes.TASK_EDITED:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task._id === action.payload.data.task._id
-            ? { ...task, ...action.payload.data.task }
+          task._id === action.payload.data._id
+            ? { ...task, ...action.payload.data }
             : task,
         ),
         pending: false,
       };
     case TaskTypes.TASK_DELETED:
-      const { _id } = action.payload.data.task;
+      const { _id } = action.payload.data;
 
       console.log(action.payload);
       return {

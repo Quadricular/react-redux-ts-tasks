@@ -4,7 +4,6 @@ import Flatpickr from 'react-flatpickr';
 import { useCurrentTask } from '../../hooks/taskHooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element => {
   const currentTask = useCurrentTask();
@@ -26,18 +25,19 @@ const Datepicker = ({ control }: { control: Control<any, any> }): JSX.Element =>
       defaultValue={currentTask && currentTask ? currentTask.deadline : undefined}
       name="date"
       control={control}
-      rules={{ required: true }}
+      rules={{ required: false }}
       render={({ field }) => {
+        console.log(field.value);
         return (
           <div className="fixed text-gray-500 hover:text-yellow-500">
             <Flatpickr
               aria-labelledby="deadline"
-              className="form-input pl-9  hover:text-yellow-600 font-medium focus:border-gray-300 w-60"
+              className="form-input sm:pl-9  hover:text-yellow-600 font-medium focus:border-gray-300 w-60"
               options={options}
               onChange={field.onChange}
-              value={field.value}
+              value={new Date(field.value)}
             />
-            <div className="absolute inset-0 right-auto flex items-center pointer-events-none ">
+            <div className="absolute inset-0 right-auto  items-center pointer-events-none hidden sm:flex">
               <FontAwesomeIcon
                 className="w-4 h-4 fill-current ml-3"
                 icon={faCalendarDay}

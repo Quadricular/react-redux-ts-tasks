@@ -41,7 +41,7 @@ const TaskItem = ({
                 <input
                   type="checkbox"
                   className="form-checkbox"
-                  defaultChecked={data.completed}
+                  checked={data.completed}
                 />
                 <div className="max-w-sm">
                   <p
@@ -80,12 +80,10 @@ const TaskItem = ({
                     >
                       <div className="text-xs text-gray-500 whitespace-nowrap">
                         Created:{' '}
-                        {data?.createdAt &&
-                          format(new Date(data.createdAt), 'dd MMM H:mm')}
+                        {data?.created && format(new Date(data.created), 'dd MMM H:mm')}
                         <br />
                         Updated:
-                        {data?.updatedAt &&
-                          format(new Date(data.updatedAt), 'dd MMM H:mm')}
+                        {data?.updated && format(new Date(data.updated), 'dd MMM H:mm')}
                       </div>
                     </Tooltip>
                   </div>

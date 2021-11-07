@@ -5,6 +5,7 @@ services:
     build:
       target: prod
     environment:
+      - VITE_MODE=prod
       - VITE_API_HOST=${VITE_API_HOST}
     ports:
       - '${PORT}:${PORT}'

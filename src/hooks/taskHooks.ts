@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import format from 'date-fns/format';
 
 import { useForm, UseFormRegister, Control, UseFormHandleSubmit } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -59,7 +60,7 @@ export const useAddTask = (): FormTypes<Task, TaskErrors> => {
             data: {
               name: data.name,
               description: data.description,
-              deadline: data?.date && (new Date(data?.date[0]) as Date),
+              deadline: data?.date && format(new Date(data?.date), 'yyyy-MM-dd'),
               completed: false,
             },
           }),
@@ -108,7 +109,7 @@ export const useEditTask = (): FormTypes<Task, TaskErrors> => {
     submitting,
     onSubmit: (data: Task & { date: string }) => {
       console.log(data?.date);
-      console.log(data);
+
       return (
         currentTask &&
         data &&
@@ -118,7 +119,7 @@ export const useEditTask = (): FormTypes<Task, TaskErrors> => {
             data: {
               name: data.name,
               description: data.description,
-              deadline: data?.date && new Date(data.date),
+              deadline: data?.date && format(new Date(data?.date), 'yyyy-MM-dd'),
               completed: currentTask.completed,
             },
           }),

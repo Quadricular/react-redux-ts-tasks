@@ -5,8 +5,8 @@ export interface Task {
   _id: string;
   name: string;
   description: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  created?: Date;
+  updated?: Date;
   deadline: Date;
   completed: boolean;
 }

@@ -37,10 +37,10 @@ export function makeServer(): Server<
         description() {
           return faker.lorem.paragraph();
         },
-        createdAt() {
+        created() {
           return faker.date.recent();
         },
-        updatedAt() {
+        updated() {
           return faker.date.soon();
         },
         deadline() {
@@ -65,7 +65,7 @@ export function makeServer(): Server<
         const total = schema.all('task').length;
         const tasks: Task[] = schema.all('task').models;
 
-        return new Response(200, { 'x-total-count': String(total) }, { tasks });
+        return new Response(200, { 'x-total-count': String(total) }, [...tasks]);
       });
 
       this.get('/tasks/:id');
@@ -74,7 +74,7 @@ export function makeServer(): Server<
       this.post('/tasks', (schema: any, request) => {
         const task = JSON.parse(request.requestBody);
         schema.tasks.create(task);
-        return new Response(200, {}, { task });
+        return new Response(200, {}, { ...task });
       });
 
       this.put('/tasks/:id', (schema, request) => {
@@ -86,13 +86,11 @@ export function makeServer(): Server<
           200,
           {},
           {
-            task: {
-              _id: id,
-              name: task.name,
-              description: task.description,
-              deadline: task.deadline,
-              completed: task.completed,
-            },
+            _id: id,
+            name: task.name,
+            description: task.description,
+            deadline: task.deadline,
+            completed: task.completed,
           },
         );
       });
@@ -100,7 +98,7 @@ export function makeServer(): Server<
       this.delete('/tasks/:id', (schema, request) => {
         const { id } = request.params;
         schema.db.tasks.remove(id);
-        return new Response(200, {}, { task: { _id: id } });
+        return new Response(200, {}, { _id: id });
       });
 
       // reset the global namespace

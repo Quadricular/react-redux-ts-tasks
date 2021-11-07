@@ -5,7 +5,7 @@ import Router from '../router';
 import type { Store } from 'redux';
 import type { History } from 'history';
 
-if (import.meta.env.DEV) {
+if (import.meta.env.DEV && !import.meta.env.VITE_MODE) {
   makeServer();
 }
 
