@@ -23,7 +23,7 @@ describe('Test Suite for Tasks Actions', () => {
   it('should create action to use once all tasks have been fetched', () => {
     const expectedAction = {
       type: TaskTypes.TASKS_LOADED,
-      data: { tasks: [{ _id: '34534', ...taskMockData }] },
+      data: [{ _id: '34534', ...taskMockData }],
     };
     expect(actions.fetchedTasksAction(expectedAction).type).equal(expectedAction.type);
   });
@@ -66,7 +66,7 @@ describe('Test Suite for Tasks Actions', () => {
   it('should create action to use once a task has been edited', () => {
     const expectedAction = {
       type: TaskTypes.TASK_EDITED,
-      payload: { data: { task: { _id: '34534', ...taskMockData } } },
+      payload: { data: { _id: '34534', ...taskMockData } },
     };
     expect(actions.editedTaskAction(expectedAction.payload).payload.data).equal(
       expectedAction.payload.data,
@@ -89,7 +89,7 @@ describe('Test Suite for Tasks Actions', () => {
   it('should create action to use once a task has been deleted', () => {
     const expectedAction = {
       type: TaskTypes.TASK_DELETED,
-      data: { task: { _id: '0' } },
+      data: { _id: '0' },
     };
     expect(actions.deletedTaskAction(expectedAction).type).equal(expectedAction.type);
   });
