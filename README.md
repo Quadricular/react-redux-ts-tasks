@@ -20,8 +20,7 @@ You might notice `"preinstall": "npx npm-force-resolutions",` is running before 
 
 ## **Running development server**
 
-Run vite dev server, it will work regardless of Docker since development uses a mocking API
-
+Run vite dev server, it will work independently from the API and Docker configurations since it's using a Mocking API, also for testing.
 `npm run dev`
 
 or
@@ -34,7 +33,7 @@ Visit [http://localhost:3000/](http://localhost:3000/).
 
 `make prod`
 
-it's important to set the API host which could be a local instance of the [API repo](https://github.com/danielmgzzg/node-express-ts-tasks) or the deployed one in azure which was used when building the app.
+it's important to set the API host which could be a local instance of the [API repo](https://github.com/danielmgzzg/python-fastapi-tasks/) or the deployed one in azure which is used when building the app.
 
 ```
 // .env
@@ -106,5 +105,16 @@ Since Azure Container Registry builds sometimes pop up some errors, it's also po
 - Redux Devtools Extension for Chrome
 - Cypress Unit Testing
 - React Testing Library
+- MirageJS
 - SASS
 - TailwindCSS
+
+## **Opportunities**
+
+- Get Full Code Coverage
+- Better logging of errors in the frontend (not just for fetching) and the setup for redux actions on failure for each different operation.
+- Better modularization of the components and their CSS. (Tailwind is great and has made the process easier, however, it has cluttered the components a little bit)
+- Authentication
+- Improve Accesibility
+- Integrate Storybook for Components
+- Optimize production bundle by using PostCSS for example.
