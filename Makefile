@@ -20,6 +20,10 @@ rmv:
 	@echo "\n[ Removing all attached volumes ]"
 	docker-compose down -v
 
+run:
+	@echo "\n[ Running prod image ]"
+	docker run -p 80:80 --env-file ./.env ${REGISTRY_NAME}.azurecr.io/${REGISTRY_IMAGE}:${REGISTRY_TAG}
+
 unit-test:
 	@echo "\n[ Running unit test using test runner... ]"
 	npm run test
@@ -67,7 +71,7 @@ webapp-appsettings:
 	@echo "\n[ Updating Web App environment variables as expected by the app code ]"
 	az webapp config appsettings set --resource-group ${RESOURCE_GROUP} \
 	 --name ${APP_NAME} --settings PORT=${PORT} \
-	 VITE_API_HOST=${VITE_API_HOST} 
+	 VITE_API_HOST=${VITE_API_HOST} VITE_MODE=${VITE_MODE} 
 
 container-permission:
 	@echo "\n[ Granting the container identity permission to access the registry ]"
